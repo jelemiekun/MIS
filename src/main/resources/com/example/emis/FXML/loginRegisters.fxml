@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.loginRegisterController">
+    <center>
+        <AnchorPane fx:id="anchorPaneCenter" onMouseClicked="#anchorPaneRequestFocus" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="anchorPaneLeftNav" prefHeight="720.0" style="-fx-background-color: #0A53B0;" visible="false">
+               <children>
+                  <Line endX="100.0" startX="-100.0" stroke="WHITE" />
+                  <FlowPane layoutX="1.5" layoutY="1.5" prefHeight="360.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="btnLeftNavDashboard" onAction="#btnLeftNavDashboardOnAction" prefHeight="60.0" prefWidth="200.0" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnLeftNavApplicants" onAction="#btnLeftNavApplicantsOnAction" prefHeight="60.0" prefWidth="200.0" text="Enroll" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnLeftNavTeachers" onAction="#btnLeftNavTeachersOnAction" prefHeight="60.0" prefWidth="200.0" text="Teachers" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnLeftNavSchedule" onAction="#btnLeftNavScheduleOnAction" prefHeight="60.0" prefWidth="200.0" text="Schedule" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnLeftNavStrand" onAction="#btnLeftNavStrandOnAction" prefHeight="60.0" prefWidth="200.0" text="Strand" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnLeftNavSection" onAction="#btnLeftNavSectionOnAction" prefHeight="60.0" prefWidth="200.0" text="Section" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPaneTopNavDashboard" prefHeight="720.0" prefWidth="1280.0" visible="false">
+               <children>
+                  <FlowPane>
+                     <children>
+                        <AnchorPane prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #0A53B0;">
+                           <children>
+                              <Label layoutX="70.0" layoutY="70.0" text="Senior High School" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="650.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/dashboard%20book.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="70.0" layoutY="152.0" text="Advocates for Worldwide Excellence" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="btnEnrollNowanchorPaneTopNavDashboard" layoutX="70.0" layoutY="255.0" prefHeight="64.0" prefWidth="250.0" style="-fx-background-color: #06D096;" text="ENROLL NOW" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="320.0" prefWidth="1280.0">
+                           <children>
+                              <Label layoutX="328.0" layoutY="71.0" text="Easy Enrollment Procedures">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="580.0" layoutY="186.0" text="Apply Now!">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPaneTopNavSections" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneTopNavSchedule" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneTopNavHome" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneTopNavEnrollees" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneTopNavContactUs" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavDashboard" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavEnroll" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavTeachers" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavSchedule" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavStrand" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneLeftNavSection" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
+         </children>
+        </AnchorPane>
+    </center>
+   <top>
+      <AnchorPane prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #0A53B0;" BorderPane.alignment="CENTER">
+         <children>
+                <ImageView fitHeight="58.0" fitWidth="54.0" layoutX="46.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/logo_no_bg.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="115.0" layoutY="20.0" text="Enrollment System" textFill="WHITE">
+                    <font>
+                        <Font name="System" size="28.0" />
+                    </font>
+                </Label>
+            <FlowPane fx:id="flowPaneTopNav" alignment="CENTER_RIGHT" layoutX="247.0" prefHeight="80.0" prefWidth="1010.0">
+               <children>
+                  <JFXButton fx:id="btnTopNavDashboard" onAction="#btnTopNavDashboardOnAction" prefHeight="80.0" prefWidth="140.0" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavSections" onAction="#btnTopNavSectionsOnAction" prefHeight="80.0" prefWidth="140.0" text="Sections" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavSchedule" onAction="#btnTopNavScheduleOnAction" prefHeight="80.0" prefWidth="140.0" text="Schedule" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavHome" onAction="#btnTopNavHomeOnAction" prefHeight="80.0" prefWidth="140.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavEnrolled" onAction="#btnTopNavEnrolledOnAction" prefHeight="80.0" prefWidth="140.0" text="Enrolled" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavContactUs" onAction="#btnTopNavContactUsOnAction" prefHeight="80.0" prefWidth="140.0" text="Contact Us" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTopNavLogOut" onAction="#btnTopNavLogOutOnAction" prefHeight="80.0" prefWidth="140.0" text="Log out" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </FlowPane>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
