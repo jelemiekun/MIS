@@ -1,0 +1,30 @@
+3 ROLES, USER, ADMIN, AT TEACHER
+
+-user
+mag eenroll sya tapos mga personal infos ay required pati strand na pagpipilian, dapat din piliin kung reg studnet or transferee kasi magiiba requirements if either sadalawa, then
+hintay muna ng approval nya mula sa mis bago pedeng makita ang schedule nya. dapat hindi makikita ng user yung profile nya
+enrolled list
+kapag nag register, may option na hindi pede mag apply, tapos lalabas nalang sa user na hindi pa sya nag aapply
+
+
+
+
+
+-admin
+dash board ng buong data, students at teachers, strand, at sections
+teachers manager (crud teacher)
+enrollees manager (hindi pede mis mag add/delete ng enrolees pero nasa mis yung approval ng student application) (kapag na disapprove, nakahiwalay list (naka save parin info pero di makikita ng user))
+crud strand
+crud section
+crud schedule
+enrolled or waiting list lahat makikita ng admin
+clear all students, clear all teachers, clear all strand, clear all section, clear all schedule function
+
+
+
+
+-teacher
+dashboard (ng mga hinahandle nya lang na section)
+sections na hinahawakan nya
+schedule nya
+students info na hinahawakan nya pede makita ng teacher
