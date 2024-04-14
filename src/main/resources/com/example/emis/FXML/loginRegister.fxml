@@ -18,7 +18,7 @@
     <center>
         <AnchorPane fx:id="anchorPane" onMouseClicked="#anchorPaneRequestFocus" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fitHeight="184.0" fitWidth="168.0" layoutX="549.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="184.0" fitWidth="168.0" layoutX="557.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Images/logo.png" />
                     </image>

@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -53,7 +55,50 @@
                   </FlowPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneTopNavDashboard" prefHeight="720.0" prefWidth="1280.0" visible="false">
+            <AnchorPane fx:id="anchorPaneTopNavDashboard" prefHeight="720.0" prefWidth="1280.0">
+               <children>
+                  <FlowPane layoutX="40.0" layoutY="35.0" prefHeight="650.0" prefWidth="1200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #0A53B0;" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPaneTopNavSections" prefHeight="720.0" prefWidth="1280.0" visible="false">
+               <children>
+                  <TableView fx:id="tableViewSectionHandlinganchorPaneTopNavSections" layoutX="42.0" layoutY="93.0" onMouseClicked="#tableViewSectionHandlinganchorPaneTopNavSectionsDoubleClicked" prefHeight="600.0" prefWidth="202.0">
+                    <columns>
+                      <TableColumn fx:id="tableViewSectionColumnStrandHandlinganchorPaneTopNavSections" prefWidth="70.0" text="Strand" />
+                        <TableColumn fx:id="tableViewSectionColumnSectionHandlinganchorPaneTopNavSections" prefWidth="130.0" text="Section" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tableViewStudentHandlinganchorPaneTopNavSections" layoutX="288.0" layoutY="93.0" onMouseClicked="#tableViewStudentHandlinganchorPaneTopNavSectionsDoubleClicked" prefHeight="600.0" prefWidth="952.0">
+                    <columns>
+                      <TableColumn fx:id="tableViewStudentColumnLastNameHandlinganchorPaneTopNavSections" prefWidth="90.0" text="Last Name" />
+                        <TableColumn fx:id="tableViewStudentColumnFirstNameHandlinganchorPaneTopNavSections" prefWidth="130.0" text="First Name" />
+                        <TableColumn fx:id="tableViewStudentColumnMiddleNameHandlinganchorPaneTopNavSections" prefWidth="90.0" text="Middle Name" />
+                        <TableColumn fx:id="tableViewStudentColumnLRNHandlinganchorPaneTopNavSections" prefWidth="150.0" text="LRN" />
+                        <TableColumn fx:id="tableViewStudentColumnEmailHandlinganchorPaneTopNavSections" prefWidth="150.0" text="Email" />
+                        <TableColumn fx:id="tableViewStudentColumnPhoneNumberHandlinganchorPaneTopNavSections" prefWidth="150.0" text="Phone Number" />
+                        <TableColumn fx:id="tableViewStudentColumnAgeHandlinganchorPaneTopNavSections" prefWidth="40.0" text="Age" />
+                        <TableColumn fx:id="tableViewStudentColumnBirthdateHandlinganchorPaneTopNavSections" prefWidth="100.0" text="Birthdate" />
+                        <TableColumn fx:id="tableViewStudentColumnSexHandlinganchorPaneTopNavSections" prefWidth="50.0" text="Sex" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="37.0" layoutY="30.0" text="Section Handling">
+                     <font>
+                        <Font name="System" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="638.0" layoutY="30.0" text="Student Information">
+                     <font>
+                        <Font name="System" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorPaneTopNavSchedule" prefHeight="720.0" prefWidth="1280.0" visible="false" />
+            <AnchorPane fx:id="anchorPaneTopNavHome" prefHeight="720.0" prefWidth="1280.0" visible="false">
                <children>
                   <FlowPane>
                      <children>
@@ -99,9 +144,6 @@
                   </FlowPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneTopNavSections" prefHeight="720.0" prefWidth="1280.0" visible="false" />
-            <AnchorPane fx:id="anchorPaneTopNavSchedule" prefHeight="720.0" prefWidth="1280.0" visible="false" />
-            <AnchorPane fx:id="anchorPaneTopNavHome" prefHeight="720.0" prefWidth="1280.0" visible="false" />
             <AnchorPane fx:id="anchorPaneTopNavEnrollees" prefHeight="720.0" prefWidth="1280.0" visible="false" />
             <AnchorPane fx:id="anchorPaneTopNavContactUs" prefHeight="720.0" prefWidth="1280.0" visible="false" />
             <AnchorPane fx:id="anchorPaneLeftNavDashboard" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false" />
