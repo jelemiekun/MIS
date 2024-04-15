@@ -15,7 +15,7 @@ import static com.example.emis.Others.Scenes.*;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(SCENES_LOGIN_REGISTER.getURL()));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(STUDENT_INFO.getURL()));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle(SCENES_LOGIN_REGISTER.getTitle());
         stage.setResizable(false);

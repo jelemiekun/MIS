@@ -2,7 +2,8 @@ package com.example.emis.Others;
 
 public enum Scenes {
     SCENES_LOGIN_REGISTER("Enrollment System", "/com/example/emis/FXML/loginRegister.fxml"),
-    MAIN("Enrollment System", "/com/example/emis/FXML/main.fxml");
+    MAIN("Enrollment System", "/com/example/emis/FXML/main.fxml"),
+    STUDENT_INFO("Enrollment System", "/com/example/emis/FXML/studentInfo.fxml");
 
     private final String title;
     private final String URL;
