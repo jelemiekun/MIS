@@ -96,6 +96,52 @@
                   </Label>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="anchorPaneTopNavHome" onMouseClicked="#anchorPaneTopNavHomeRequestFocus" prefHeight="720.0" prefWidth="1280.0" visible="false">
+               <children>
+                  <FlowPane>
+                     <children>
+                        <AnchorPane prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #0A53B0;">
+                           <children>
+                              <Label layoutX="70.0" layoutY="70.0" text="Senior High School" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="650.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/dashboard%20book.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="70.0" layoutY="152.0" text="Advocates for Worldwide Excellence" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton layoutX="70.0" layoutY="255.0" onAction="#btnEnrollNowanchorPaneTopNavDashboardOnAction" prefHeight="64.0" prefWidth="250.0" style="-fx-background-color: #06D096;" text="ENROLL NOW" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="320.0" prefWidth="1280.0">
+                           <children>
+                              <Label layoutX="328.0" layoutY="71.0" text="Easy Enrollment Procedures">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="580.0" layoutY="186.0" text="Apply Now!">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="anchorPaneTopNavSchedule" onMouseClicked="#anchorPaneTopNavScheduleRequestFocus" prefHeight="720.0" prefWidth="1280.0" visible="false">
                <children>
                   <Label fx:id="labelScheduleAnchorPaneTopNavSchedule" layoutX="47.0" layoutY="30.0" prefHeight="70.0" prefWidth="860.0" text="SCHEDULE">
@@ -392,52 +438,6 @@
                      </children>
                   </GridPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="anchorPaneTopNavHome" onMouseClicked="#anchorPaneTopNavHomeRequestFocus" prefHeight="720.0" prefWidth="1280.0" visible="false">
-               <children>
-                  <FlowPane>
-                     <children>
-                        <AnchorPane prefHeight="400.0" prefWidth="1280.0" style="-fx-background-color: #0A53B0;">
-                           <children>
-                              <Label layoutX="70.0" layoutY="70.0" text="Senior High School" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="48.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="650.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/dashboard%20book.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="70.0" layoutY="152.0" text="Advocates for Worldwide Excellence" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Italic" size="24.0" />
-                                 </font>
-                              </Label>
-                              <JFXButton layoutX="70.0" layoutY="255.0" onAction="#btnEnrollNowanchorPaneTopNavDashboardOnAction" prefHeight="64.0" prefWidth="250.0" style="-fx-background-color: #06D096;" text="ENROLL NOW" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="320.0" prefWidth="1280.0">
-                           <children>
-                              <Label layoutX="328.0" layoutY="71.0" text="Easy Enrollment Procedures">
-                                 <font>
-                                    <Font name="System Bold" size="48.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="580.0" layoutY="186.0" text="Apply Now!">
-                                 <font>
-                                    <Font name="System Italic" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </FlowPane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="anchorPaneTopNavEnrolled" onMouseClicked="#anchorPaneTopNavEnrolledRequestFocus" prefHeight="720.0" prefWidth="1280.0" visible="false">
                <children>
                   <TableView fx:id="tableViewEnrolledStudentAnchorPaneEnrolled" layoutX="55.0" layoutY="95.0" prefHeight="593.0" prefWidth="1170.0">
