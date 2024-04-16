@@ -38,11 +38,11 @@ public class mainModel {
     }
 
     private void loadForMIS() {
-        setMISVisibilities();
+        setRemoveUnnecessaryButtonForMis();
         switchTabForMIS(1);
     }
 
-    private void setMISVisibilities() {
+    private void setRemoveUnnecessaryButtonForMis() {
         ObservableList<JFXButton> topNavToRemove = FXCollections.observableArrayList(
                 mainController1.btnTopNavDashboard, mainController1.btnTopNavSections, mainController1.btnTopNavHome, mainController1.btnTopNavSchedule, mainController1.btnTopNavEnrolled, mainController1.btnTopNavContactUs);
         mainController1.flowPaneTopNav.getChildren().removeAll(topNavToRemove);
@@ -144,17 +144,31 @@ public class mainModel {
     }
 
     private void loadForTeacher() {
+        setRemoveUnnecessaryButtonForTeacher();
+        switchPaneForTeacherStudent(1);
+    }
 
+    private void setRemoveUnnecessaryButtonForTeacher() {
+        ObservableList<JFXButton> topNavToRemove = FXCollections.observableArrayList(
+                mainController1.btnTopNavHome, mainController1.btnTopNavEnrolled, mainController1.btnTopNavContactUs);
+        mainController1.flowPaneTopNav.getChildren().removeAll(topNavToRemove);
     }
 
     private void loadForStudent() {
+        setRemoveUnnecessaryButtonForStudent();
+        switchPaneForTeacherStudent(3);
+    }
 
+    private void setRemoveUnnecessaryButtonForStudent() {
+        ObservableList<JFXButton> topNavToRemove = FXCollections.observableArrayList(
+                mainController1.btnTopNavDashboard, mainController1.btnTopNavSections);
+        mainController1.flowPaneTopNav.getChildren().removeAll(topNavToRemove);
     }
 
 
     public void switchPaneForTeacherStudent(int number) {
         switch (number) {
-            case 1:
+            case 1: // dashboard
                 mainController1.anchorPaneTopNavDashboard.setVisible(true);
                 mainController1.anchorPaneTopNavSections.setVisible(false);
                 mainController1.anchorPaneTopNavHome.setVisible(false);
@@ -169,7 +183,7 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
                 break;
-            case 2:
+            case 2: // sections
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);
                 mainController1.anchorPaneTopNavSections.setVisible(true);
                 mainController1.anchorPaneTopNavHome.setVisible(false);
@@ -184,7 +198,7 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
                 break;
-            case 3:
+            case 3: // home
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);
                 mainController1.anchorPaneTopNavSections.setVisible(false);
                 mainController1.anchorPaneTopNavHome.setVisible(true);
@@ -199,7 +213,7 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
                 break;
-            case 4:
+            case 4: // schedule
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);
                 mainController1.anchorPaneTopNavSections.setVisible(false);
                 mainController1.anchorPaneTopNavHome.setVisible(false);
@@ -214,7 +228,7 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
                 break;
-            case 5:
+            case 5: // enrolled
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);
                 mainController1.anchorPaneTopNavSections.setVisible(false);
                 mainController1.anchorPaneTopNavHome.setVisible(false);
@@ -229,7 +243,7 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
                 break;
-            case 6:
+            case 6: // contact us
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);
                 mainController1.anchorPaneTopNavSections.setVisible(false);
                 mainController1.anchorPaneTopNavHome.setVisible(false);

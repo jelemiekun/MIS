@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -102,6 +103,7 @@ public class loginRegisterController implements Initializable {
     void createAnAccountClicked() {
         anchorPaneLogin.setVisible(false);
         anchorPaneRegister.setVisible(true);
+        labelCreateAnAccountAs.setVisible(true);
         clearFields();
     }
 
@@ -109,6 +111,7 @@ public class loginRegisterController implements Initializable {
     void loginAccountClicked() {
         anchorPaneLogin.setVisible(true);
         anchorPaneRegister.setVisible(false);
+        labelCreateAnAccountAs.setVisible(false);
         clearFields();
     }
 
@@ -129,27 +132,30 @@ public class loginRegisterController implements Initializable {
     }
 
     @FXML
-    void registerAccountOnAction() {
-        boolean isTeacher = createAnAccountAs;
-        String email = textFieldRegisterEmail.getText().trim();
-        String newPassword = toggleRegisterNewPassword ? textFieldRegisterShowNewPassword.getText().trim() : passwordFieldRegisterNewPassword.getText().trim();
-        String confirmNewPassword = toggleRegisterConfirmNewPassword ? textFieldRegisterShowConfirmNewPassword.getText().trim() : passwordFieldConfirmNewPassword.getText().trim();
+    void registerAccountOnAction() throws IOException {
+        if (checkBoxTermsAndConditions.isSelected()) {
+            boolean isTeacher = createAnAccountAs;
+            String email = textFieldRegisterEmail.getText().trim();
+            String newPassword = toggleRegisterNewPassword ? textFieldRegisterShowNewPassword.getText().trim() : passwordFieldRegisterNewPassword.getText().trim();
+            String confirmNewPassword = toggleRegisterConfirmNewPassword ? textFieldRegisterShowConfirmNewPassword.getText().trim() : passwordFieldConfirmNewPassword.getText().trim();
 
-        if (!SQLIsEmailDuplicate(email)) {
-            if (newPassword.equals(confirmNewPassword)) {
-                if (isTeacher) {
-                    // sql for teacher
+            if (!SQLIsEmailDuplicate(email)) {
+                if (newPassword.equals(confirmNewPassword)) {
+                    if (isTeacher) {
+                        openRegisteredTeacherCredentials(email, newPassword);
+                    } else {
+                        if (SQLRegisterStudent(email, newPassword))
+                            alertRegisterSuccess();
+                        else
+                            alertRegisterNotSuccess();
+                    }
+                    loginAccountClicked();
                 } else {
-                    // sql for student
+                    alertRegisterPasswordDoNotMatch();
                 }
-
-                alertRegisterSuccess();
-                loginAccountClicked();
             } else {
-                alertRegisterPasswordDoNotMatch();
+                alertRegisterEmailExists();
             }
-        } else {
-            alertRegisterEmailExists();
         }
     }
 
@@ -160,7 +166,7 @@ public class loginRegisterController implements Initializable {
     }
 
     @FXML
-    void registerFieldsPressedEnter(KeyEvent event) {
+    void registerFieldsPressedEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER)
             registerAccountOnAction();
     }
@@ -244,6 +250,29 @@ public class loginRegisterController implements Initializable {
         checkBoxTermsAndConditions.setSelected(false);
     }
 
+    private void openRegisteredTeacherCredentials(String email, String password) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(TEACHER_CREDENTIALS_SCENE.getURL()));
+        Parent root = loader.load();
+
+        teacherCredentialsController teacherCredentialsController1 = loader.getController();
+        teacherCredentialsController1.setRegistration(true, email, password);
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(anchorPane.getScene().getWindow());
+
+        stage.setTitle(TEACHER_CREDENTIALS_SCENE.getTitle());
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl()))));
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        createAnAccountAs = false;
+        labelCreateAnAccountAs.setText("Create an account as teacher");
+    }
+
     private void goToMain(String email) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_SCENE.getURL()));
         Parent root = loader.load();
@@ -264,5 +293,6 @@ public class loginRegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(this::anchorPaneRequestFocus);
+        labelCreateAnAccountAs.setVisible(false);
     }
 }

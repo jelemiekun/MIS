@@ -5,7 +5,6 @@ import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -121,9 +120,6 @@ public class mainController implements Initializable {
     public Label labelTeacherSchedule44;
     public Label labelTeacherSchedule45;
     public Label labelTeacherSchedule46;
-
-    // MapView
-    public MapView mapViewContactUs;
 
     // Row Constraints
     public RowConstraints rowLastSchedule;

@@ -38,6 +38,7 @@ public class SQL {
     }
 
     public static String encryptString(String input) {
+        // encrypted password for admin = NGtfAJPLaJACyajHXvBM6A==
         try {
             SecretKey secretKey = new SecretKeySpec(key.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES");
@@ -110,6 +111,45 @@ public class SQL {
                 return resultSet.next();
             }
         } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean SQLRegisterStudent(String email, String password) {
+        boolean studentInRegisterSuccess = SQLRegisterStudentInLoginRegister(email, password);
+        boolean studentInStudentSuccess = SQLRegisterStudentInStudent(email, password);
+
+        return studentInRegisterSuccess && studentInStudentSuccess;
+    }
+
+    private static boolean SQLRegisterStudentInLoginRegister(String email, String password) {
+        String query = "INSERT INTO login_register(email, password, role) values (?, ?, ?);";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString( 2, encryptString(password));
+            preparedStatement.setString(3, STUDENT_ROLE_ENUM.getRole());
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static boolean SQLRegisterStudentInStudent(String email, String password) {
+        String query = "INSERT INTO student(email, password) values (?, ?);";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            alertNoConnection();
             throw new RuntimeException(e);
         }
     }

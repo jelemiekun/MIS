@@ -11,7 +11,7 @@ public class Alerts {
         alert.setTitle("Error");
         alert.setHeaderText("Connection Error");
         alert.setContentText("Unable to connect to the database. Please check your connection and try again.");
-        alert.show();
+        alert.showAndWait();
     }
 
     public static void alertRegisterEmailExists() {
@@ -35,6 +35,14 @@ public class Alerts {
         alert.setTitle("Success");
         alert.setHeaderText("Registration Successful");
         alert.setContentText("Your registration has been completed successfully. You can now log in with your credentials.");
+        alert.showAndWait();
+    }
+
+    public static void alertRegisterNotSuccess() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Registration Failed");
+        alert.setContentText("Your registration has been unsuccessful. Please try again later.");
         alert.showAndWait();
     }
 
