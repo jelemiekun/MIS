@@ -1,13 +1,23 @@
 package com.example.emis.Models;
 
 import com.example.emis.Controllers.mainController;
+import com.gluonhq.maps.MapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,6 +45,9 @@ public class mainModel {
         } else if (role.equals(STUDENT_ROLE_ENUM.getRole())) {
             loadForStudent();
         }
+
+        if (!role.equals(MIS_ROLE_ENUM.getRole()))
+            setMapView();
     }
 
     private void loadForMIS() {
@@ -258,6 +271,37 @@ public class mainModel {
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabSelected);
                 break;
+        }
+    }
+
+    public void setMapView() {
+        Platform.runLater(() -> {
+            try {
+                mainController1.vBoxMapAnchorPaneContactUs.getChildren().clear();
+                MapView mapView = new MapView();
+                mapView.setPrefSize(658, 335);
+                mapView.addLayer(new CustomMapLayer());
+                mapView.setZoom(16.5);
+                mapView.setCenter(mainController1.mapPoint);
+                mainController1.vBoxMapAnchorPaneContactUs.getChildren().add(mapView);
+                VBox.setVgrow(mapView, Priority.ALWAYS);
+            } catch (Exception e) {
+                System.out.println("mapView Error");
+            }
+        });
+    }
+    private class CustomMapLayer extends MapLayer {
+        private final Node marker;
+        public CustomMapLayer() {
+            marker = new Circle(7, Color.RED);
+            getChildren().add(marker);
+        }
+
+        @Override
+        protected void layoutLayer() {
+            Point2D point = getMapPoint(mainController1.mapPoint.getLatitude(), mainController1.mapPoint.getLongitude());
+            marker.setTranslateX(point.getX());
+            marker.setTranslateY(point.getY());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.emis.Controllers;
 
 import com.example.emis.Models.mainModel;
+import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -25,6 +26,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class mainController implements Initializable {
+    public MapPoint mapPoint = new MapPoint(14.56830,121.07535);
+
     public String emailUsing = "";
 
     public String styleTabSelected = "-fx-background-color: #1172e1;";
