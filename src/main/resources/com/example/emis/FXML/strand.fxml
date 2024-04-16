@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.strandController">
+   <children>
+      <MFXTextField fx:id="textFieldStrandName" floatingText="Strand Name" layoutX="14.0" layoutY="20.0" onKeyPressed="#textFieldStrandNamePressedEnter" prefHeight="49.0" prefWidth="451.0" />
+      <JFXButton fx:id="btnAddEdit" layoutX="472.0" layoutY="20.0" onAction="#btnAddEditOnAction" prefHeight="49.0" prefWidth="116.0" ripplerFill="BLACK" style="-fx-background-color: #06D096;" text="ADD" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

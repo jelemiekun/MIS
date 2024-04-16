@@ -533,11 +533,6 @@ public class mainController {
     }
 
     @FXML
-    void tableViewStrandAnchorPaneStrandDoubleClicked(MouseEvent event) {
-
-    }
-
-    @FXML
     void tableViewTeacherAnchorPaneTeachersDoubleClicked(MouseEvent event) {
 
     }
