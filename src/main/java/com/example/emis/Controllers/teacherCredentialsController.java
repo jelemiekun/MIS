@@ -63,7 +63,7 @@ public class teacherCredentialsController implements Initializable {
         Platform.runLater(() -> {
             if (isRegistration) {
                 labelRegistration.setVisible(true);
-                
+
                 btnAddEditTeacherAccount.setText("OKAY");
 
                 textFieldTeacherEmail.setText(emailToRegister);
