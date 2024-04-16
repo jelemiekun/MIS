@@ -222,31 +222,6 @@ public class mainController implements Initializable {
     }
 
     @FXML
-    void btnAddSectionAnchorPaneTeacherOnAction() {
-
-    }
-
-    @FXML
-    void btnAddStrandAnchorPaneTeacherOnAction() {
-
-    }
-
-    @FXML
-    void btnAddTeacherAnchorPaneTeacherOnAction() {
-
-    }
-
-    @FXML
-    void btnContactSaveChangesOnAction() {
-
-    }
-
-    @FXML
-    void btnEnrollNowAnchorPaneTopNavDashboardOnAction() {
-
-    }
-
-    @FXML
     void btnLeftNavDashboardOnAction() {
         mainModel1.switchTabForMIS(1);
     }
@@ -277,6 +252,67 @@ public class mainController implements Initializable {
     }
 
     @FXML
+    void btnTopNavDashboardOnAction() {
+        mainModel1.switchPaneForTeacherStudent(1);
+    }
+
+    @FXML
+    void btnTopNavSectionsOnAction() {
+        mainModel1.switchPaneForTeacherStudent(2);
+    }
+
+    @FXML
+    void btnTopNavHomeOnAction() {
+        mainModel1.switchPaneForTeacherStudent(3);
+    }
+
+    @FXML
+    void btnTopNavScheduleOnAction() {
+        mainModel1.switchPaneForTeacherStudent(4);
+    }
+
+    @FXML
+    void btnTopNavEnrolledOnAction() {
+        mainModel1.switchPaneForTeacherStudent(5);
+    }
+
+    @FXML
+    void btnTopNavContactUsOnAction() {
+        mainModel1.switchPaneForTeacherStudent(6);
+    }
+
+    @FXML
+    void btnTopNavLogOutOnAction() throws IOException {
+        mainModel1.logOut();
+    }
+
+
+    @FXML
+    void btnAddSectionAnchorPaneTeacherOnAction() {
+
+    }
+
+    @FXML
+    void btnAddStrandAnchorPaneTeacherOnAction() {
+
+    }
+
+    @FXML
+    void btnAddTeacherAnchorPaneTeacherOnAction() {
+
+    }
+
+    @FXML
+    void btnContactSaveChangesOnAction() {
+
+    }
+
+    @FXML
+    void btnEnrollNowAnchorPaneTopNavDashboardOnAction() {
+
+    }
+
+    @FXML
     void btnSearchAnchorPaneEnrolledStudentOnAction() {
 
     }
@@ -288,41 +324,6 @@ public class mainController implements Initializable {
 
     @FXML
     void btnSubmitAnchorPaneContactUsOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavContactUsOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavDashboardOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavEnrolledOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavHomeOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavLogOutOnAction() throws IOException {
-        mainModel1.logOut();
-    }
-
-    @FXML
-    void btnTopNavScheduleOnAction() {
-
-    }
-
-    @FXML
-    void btnTopNavSectionsOnAction() {
 
     }
 

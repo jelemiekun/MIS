@@ -46,9 +46,6 @@ public class mainModel {
         ObservableList<JFXButton> topNavToRemove = FXCollections.observableArrayList(
                 mainController1.btnTopNavDashboard, mainController1.btnTopNavSections, mainController1.btnTopNavHome, mainController1.btnTopNavSchedule, mainController1.btnTopNavEnrolled, mainController1.btnTopNavContactUs);
         mainController1.flowPaneTopNav.getChildren().removeAll(topNavToRemove);
-
-        mainController1.anchorPaneLeftNav.setVisible(true);
-        mainController1.anchorPaneLeftNavDashboard.setVisible(true);
     }
 
     public void switchTabForMIS(int number) {
@@ -155,8 +152,102 @@ public class mainModel {
     }
 
 
+    public void switchPaneForTeacherStudent(int number) {
+        switch (number) {
+            case 1:
+                mainController1.anchorPaneTopNavDashboard.setVisible(true);
+                mainController1.anchorPaneTopNavSections.setVisible(false);
+                mainController1.anchorPaneTopNavHome.setVisible(false);
+                mainController1.anchorPaneTopNavSchedule.setVisible(false);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(false);
+                mainController1.anchorPaneTopNavContactUs.setVisible(false);
 
-    
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+                break;
+            case 2:
+                mainController1.anchorPaneTopNavDashboard.setVisible(false);
+                mainController1.anchorPaneTopNavSections.setVisible(true);
+                mainController1.anchorPaneTopNavHome.setVisible(false);
+                mainController1.anchorPaneTopNavSchedule.setVisible(false);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(false);
+                mainController1.anchorPaneTopNavContactUs.setVisible(false);
+
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+                break;
+            case 3:
+                mainController1.anchorPaneTopNavDashboard.setVisible(false);
+                mainController1.anchorPaneTopNavSections.setVisible(false);
+                mainController1.anchorPaneTopNavHome.setVisible(true);
+                mainController1.anchorPaneTopNavSchedule.setVisible(false);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(false);
+                mainController1.anchorPaneTopNavContactUs.setVisible(false);
+
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+                break;
+            case 4:
+                mainController1.anchorPaneTopNavDashboard.setVisible(false);
+                mainController1.anchorPaneTopNavSections.setVisible(false);
+                mainController1.anchorPaneTopNavHome.setVisible(false);
+                mainController1.anchorPaneTopNavSchedule.setVisible(true);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(false);
+                mainController1.anchorPaneTopNavContactUs.setVisible(false);
+
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+                break;
+            case 5:
+                mainController1.anchorPaneTopNavDashboard.setVisible(false);
+                mainController1.anchorPaneTopNavSections.setVisible(false);
+                mainController1.anchorPaneTopNavHome.setVisible(false);
+                mainController1.anchorPaneTopNavSchedule.setVisible(false);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(true);
+                mainController1.anchorPaneTopNavContactUs.setVisible(false);
+
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+                break;
+            case 6:
+                mainController1.anchorPaneTopNavDashboard.setVisible(false);
+                mainController1.anchorPaneTopNavSections.setVisible(false);
+                mainController1.anchorPaneTopNavHome.setVisible(false);
+                mainController1.anchorPaneTopNavSchedule.setVisible(false);
+                mainController1.anchorPaneTopNavEnrolled.setVisible(false);
+                mainController1.anchorPaneTopNavContactUs.setVisible(true);
+
+                mainController1.btnTopNavDashboard.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSections.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavHome.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabNotSelected);
+                mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabSelected);
+                break;
+        }
+    }
+
+
     public void logOut() throws IOException {
         if (alertConfirmLogout()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(LOGIN_REGISTER_SCENE.getURL()));

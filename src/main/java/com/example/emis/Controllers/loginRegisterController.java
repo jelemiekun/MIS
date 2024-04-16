@@ -130,7 +130,27 @@ public class loginRegisterController implements Initializable {
 
     @FXML
     void registerAccountOnAction() {
+        boolean isTeacher = createAnAccountAs;
+        String email = textFieldRegisterEmail.getText().trim();
+        String newPassword = toggleRegisterNewPassword ? textFieldRegisterShowNewPassword.getText().trim() : passwordFieldRegisterNewPassword.getText().trim();
+        String confirmNewPassword = toggleRegisterConfirmNewPassword ? textFieldRegisterShowConfirmNewPassword.getText().trim() : passwordFieldConfirmNewPassword.getText().trim();
 
+        if (!SQLIsEmailDuplicate(email)) {
+            if (newPassword.equals(confirmNewPassword)) {
+                if (isTeacher) {
+                    // sql for teacher
+                } else {
+                    // sql for student
+                }
+
+                alertRegisterSuccess();
+                loginAccountClicked();
+            } else {
+                alertRegisterPasswordDoNotMatch();
+            }
+        } else {
+            alertRegisterEmailExists();
+        }
     }
 
     @FXML

@@ -78,7 +78,7 @@ public class SQL {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            alertNoConnection();
         }
         return false;
     }
@@ -94,8 +94,23 @@ public class SQL {
                     return resultSet.getString("role");
             }
         } catch (SQLException e) {
+            alertNoConnection();
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public static boolean SQLIsEmailDuplicate(String email) {
+        String query = "SELECT email FROM login_register where EMAIL = ?";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

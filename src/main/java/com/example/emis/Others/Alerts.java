@@ -6,6 +6,38 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 public class Alerts {
+    public static void alertNoConnection() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Connection Error");
+        alert.setContentText("Unable to connect to the database. Please check your connection and try again.");
+        alert.show();
+    }
+
+    public static void alertRegisterEmailExists() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Duplicate email registration");
+        alert.setContentText("Email already registered. Please use a different email.");
+        alert.show();
+    }
+
+    public static void alertRegisterPasswordDoNotMatch() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Password mismatch");
+        alert.setContentText("New password and confirm new password does not match.");
+        alert.show();
+    }
+
+    public static void alertRegisterSuccess() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Registration Successful");
+        alert.setContentText("Your registration has been completed successfully. You can now log in with your credentials.");
+        alert.showAndWait();
+    }
+
     public static void alertUnexpectedError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
