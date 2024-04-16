@@ -1,5 +1,6 @@
 package com.example.emis.Controllers;
 
+import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -226,6 +227,9 @@ public class mainController {
 
     @FXML
     private Label labelTeacherSchedule45;
+
+    @FXML
+    private MapView mapViewContactUs;
 
     @FXML
     private TableView<?> tableViewApplicantsAnchorPaneEnroll;

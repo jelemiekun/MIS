@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.maps.MapView?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -562,7 +563,10 @@
                                     </AnchorPane>
                                  </children>
                               </FlowPane>
-                              <VBox fx:id="vBoxMapAnchorPaneContactUs" layoutX="577.0" layoutY="27.0" prefHeight="335.0" prefWidth="658.0" />
+                              <VBox fx:id="vBoxMapAnchorPaneContactUs" layoutX="577.0" layoutY="27.0" prefHeight="335.0" prefWidth="658.0">
+                                 <children>
+                                    <MapView fx:id="mapViewContactUs" prefHeight="335.0" />
+                                 </children></VBox>
                            </children>
                         </AnchorPane>
                      </children>
@@ -582,7 +586,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneLeftNav" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;" visible="false">
+            <AnchorPane fx:id="anchorPaneLeftNav" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;">
                <children>
                   <Line endX="199.0" stroke="WHITE" />
                   <FlowPane prefHeight="360.0" prefWidth="200.0">
@@ -766,7 +770,7 @@
                      </children>
                   </FlowPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="anchorPaneLeftNavTeachers" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false">
+            <AnchorPane fx:id="anchorPaneLeftNavTeachers" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0">
                <children>
                   <JFXButton alignment="CENTER" layoutX="28.0" layoutY="28.0" onAction="#btnAddTeacherAnchorPaneTeacherOnAction" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: #06D096;" text="+ Add Teacher" textFill="WHITE">
                      <font>
