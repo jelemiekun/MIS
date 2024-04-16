@@ -12,17 +12,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.example.emis.Others.Images.*;
-import static com.example.emis.Others.Scenes.*;
+import static com.example.emis.Enums.ImagesEnum.*;
+import static com.example.emis.Others.SQL.*;
+import static com.example.emis.Enums.ScenesEnum.*;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(STUDENT_INFO.getURL()));
+        SQLCreateConnection();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(LOGIN_REGISTER_SCENE.getURL()));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle(SCENES_LOGIN_REGISTER.getTitle());
+        stage.setTitle(LOGIN_REGISTER_SCENE.getTitle());
         stage.setResizable(false);
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(IMAGES_LOGO.getUrl()))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOGO_IMAGE.getUrl()))));
         stage.setScene(scene);
         setStyleSheets();
         stage.show();

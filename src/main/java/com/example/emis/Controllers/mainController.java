@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,7 +19,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
-public class mainController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import static com.example.emis.Enums.SQLRolesEnum.*;
+import static com.example.emis.Others.SQL.*;
+
+public class mainController implements Initializable {
+    private String emailUsing = "";
+
 
     @FXML
     private AnchorPane anchorPaneCenter;
@@ -587,4 +596,36 @@ public class mainController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        whatRole();
+    }
+
+    void setEmailUsing(String emailUsing) {
+        this.emailUsing = emailUsing;
+    }
+
+    private void whatRole() {
+        String role = SQLWhatRole(emailUsing);
+
+        if (role.equals(MIS_ROLE_ENUM.getRole())) {
+
+        } else if (role.equals(TEACHER_ROLE_ENUM.getRole())) {
+
+        } else if (role.equals(STUDENT_ROLE_ENUM.getRole())) {
+
+        }
+    }
+
+    private void loadForMIS() {
+
+    }
+
+    private void loadForTeacher() {
+
+    }
+
+    private void loadForStudent() {
+
+    }
 }

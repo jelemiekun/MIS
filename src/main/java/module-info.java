@@ -5,6 +5,7 @@ module com.example.emis {
     requires com.jfoenix;
     requires com.gluonhq.maps;
     requires MaterialFX;
+    requires java.sql;
 
 
     opens com.example.emis to javafx.fxml;
