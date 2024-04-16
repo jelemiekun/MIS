@@ -1,5 +1,7 @@
 package com.example.emis.Controllers;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToggleButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,9 @@ public class teacherController {
 
     @FXML
     private AnchorPane anchorPaneNotEditing;
+
+    @FXML
+    private JFXButton buttonAddEdit;
 
     @FXML
     private MFXComboBox<?> comboBoxDepartment;
@@ -141,7 +146,10 @@ public class teacherController {
     private TextField textFieldTeacherName;
 
     @FXML
-    void buttonSaveChangesOnAction(ActionEvent event) {
+    private JFXToggleButton toggleViewEdit;
+
+    @FXML
+    void buttonAddEditOnAction(ActionEvent event) {
 
     }
 
@@ -317,6 +325,11 @@ public class teacherController {
 
     @FXML
     void flowPane46(MouseEvent event) {
+
+    }
+
+    @FXML
+    void toggleViewEditOnAction(ActionEvent event) {
 
     }
 
