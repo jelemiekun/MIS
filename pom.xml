@@ -112,18 +112,6 @@
       <artifactId>charm-down-plugin-audio-recording</artifactId>
       <version>3.8.6</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/io.github.palexdev/materialfx -->
-    <dependency>
-      <groupId>io.github.palexdev</groupId>
-      <artifactId>materialfx</artifactId>
-      <version>11.17.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.github.palexdev/virtualizedfx -->
-    <dependency>
-      <groupId>io.github.palexdev</groupId>
-      <artifactId>virtualizedfx</artifactId>
-      <version>11.2.6</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/io.github.palexdev/mfxeffects -->
     <dependency>
       <groupId>io.github.palexdev</groupId>
@@ -182,6 +170,11 @@
       <artifactId>storage</artifactId>
       <version>4.0.20</version>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.palexdev</groupId>
+      <artifactId>materialfx</artifactId>
+      <version>11.17.0</version>
     </dependency>
   </dependencies>
 
