@@ -7,21 +7,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1262.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.teacherController">
+<AnchorPane prefHeight="700.0" prefWidth="1262.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.strandController">
     <children>
         <AnchorPane fx:id="anchorPaneNotEditing" layoutX="53.0" layoutY="30.0">
             <children>
-                <Label fx:id="labelDisplayTeacherName" prefHeight="53.0" prefWidth="1162.0" text="Teacher's Name">
+                <Label fx:id="labelDisplaySectionName" prefHeight="53.0" prefWidth="1162.0" text="Section Name">
                     <font>
                         <Font size="36.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelDisplayDepartment" layoutY="62.0" prefHeight="27.0" prefWidth="1162.0" text="Department">
+                <Label fx:id="labelDisplayStrand" layoutY="62.0" prefHeight="27.0" prefWidth="1162.0" text="Strand">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -30,18 +29,12 @@
         </AnchorPane>
         <AnchorPane fx:id="anchorPaneEditing" layoutX="38.0" layoutY="26.0">
             <children>
-                <TextField fx:id="textFieldTeacherName" prefHeight="58.0" prefWidth="465.0" promptText="Teacher's Name">
+                <TextField fx:id="textFieldSectionName" prefHeight="58.0" prefWidth="465.0" promptText="Section Name">
                     <font>
                         <Font size="28.0" />
                     </font>
                 </TextField>
-                <MFXComboBox fx:id="comboBoxDepartment" floatingText="DEPARTMENT" layoutY="58.0" prefHeight="40.0" prefWidth="243.0" />
-                <MFXComboBox fx:id="comboBoxSection" floatingText="SECTION" layoutX="944.0" layoutY="58.0" prefHeight="40.0" prefWidth="243.0" />
-                <Label layoutX="542.0" layoutY="65.0" text="select a cell in the table below and select a section" textFill="#909090">
-                    <font>
-                        <Font name="System Italic" size="18.0" />
-                    </font>
-                </Label>
+                <MFXComboBox fx:id="comboBoxStrand" floatingText="STRAND" layoutY="58.0" prefHeight="40.0" prefWidth="243.0" />
                 <JFXButton fx:id="buttonAddEdit" layoutX="1029.0" onAction="#buttonAddEditOnAction" prefWidth="158.0" ripplerFill="BLACK" style="-fx-background-color: #06D096;" text="SAVE CHANGES" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="18.0" />
@@ -68,7 +61,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="rowLastSchedule" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="MONDAY" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -136,7 +129,12 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Label text="2:00-3:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                <Label fx:id="labelTeacherSchedule00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -146,22 +144,12 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Label text="RECESS" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Label fx:id="labelTeacherSchedule02" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Label text="RECESS" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label text="RECESS" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label text="RECESS" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Label fx:id="labelTeacherSchedule03" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -171,7 +159,77 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
+                <Label fx:id="labelTeacherSchedule04" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule05" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule10" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule11" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label text="RECESS" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule12" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule13" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
                 <Label text="LUNCH" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule14" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule15" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule20" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule21" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label text="RECESS" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -181,7 +239,77 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
+                <Label fx:id="labelTeacherSchedule24" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule25" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule30" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule31" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label text="RECESS" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule32" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule33" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
                 <Label text="LUNCH" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule34" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule35" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule40" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule41" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label text="RECESS" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule42" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule43" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -191,321 +319,46 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule00">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule01">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane02" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule02">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane03" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule03">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane04" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule04">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane05" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule05">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane06" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule06">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane10" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule10">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane11" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule11">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane12" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule12">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane13" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule13">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane14" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule14">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane15" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule15">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane16" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule16">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane20" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule20">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane21" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule21">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule22">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule23">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane24" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule24">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane25" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule25">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane26" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule26">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane30" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule30">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane31" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule31">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane32" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule32">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane33" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule33">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane34" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule34">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane35" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule35">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane36" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule36">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane40" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule40">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane41" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule41">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane42" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule42">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane43" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule43">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane44" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule44">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane45" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule45">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" onMouseClicked="#flowPane46" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                    <children>
-                        <Label fx:id="labelTeacherSchedule46">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </FlowPane>
+                <Label fx:id="labelTeacherSchedule44" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule45" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label text="2:00-3:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule06" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule16" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule26" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule36" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTeacherSchedule46" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
             </children>
         </GridPane>
         <JFXToggleButton fx:id="toggleViewEdit" layoutX="840.0" onAction="#toggleViewEditOnAction" prefHeight="40.0" prefWidth="143.0" text="View/Edit" />
