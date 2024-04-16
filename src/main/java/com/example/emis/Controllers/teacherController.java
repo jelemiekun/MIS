@@ -149,6 +149,11 @@ public class teacherController {
     private JFXToggleButton toggleViewEdit;
 
     @FXML
+    void btnEditAccountOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void buttonAddEditOnAction(ActionEvent event) {
 
     }

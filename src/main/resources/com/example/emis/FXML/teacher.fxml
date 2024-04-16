@@ -47,6 +47,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
+            <JFXButton layoutX="1103.0" layoutY="38.0" onAction="#btnEditAccountOnAction" text="EDIT ACCOUNT" textFill="#d7d7d7">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
         <GridPane fx:id="gridPaneScheduleAnchorPaneTopNavSchedule" alignment="CENTER" gridLinesVisible="true" layoutX="38.0" layoutY="138.0" prefHeight="525.0" prefWidth="1187.0" style="-fx-border-color: black;">
