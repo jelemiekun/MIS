@@ -52,6 +52,7 @@ public class mainModel {
 
     private void loadForMIS() {
         setRemoveUnnecessaryButtonForMis();
+        mainController1.anchorPaneLeftNav.setVisible(true);
         switchTabForMIS(1);
     }
 

@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -29,6 +30,9 @@ public class teacherCredentialsController implements Initializable {
 
     @FXML
     private MFXTextField textFieldTeacherPassword;
+
+    @FXML
+    private Label labelRegistration;
 
     @FXML
     void btnAddEditTeacherAccountOnAction() {
@@ -58,6 +62,8 @@ public class teacherCredentialsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             if (isRegistration) {
+                labelRegistration.setVisible(true);
+                
                 btnAddEditTeacherAccount.setText("OKAY");
 
                 textFieldTeacherEmail.setText(emailToRegister);
