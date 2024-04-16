@@ -2,6 +2,7 @@ package com.example.emis.Controllers;
 
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -35,6 +36,9 @@ public class mainController {
     private AnchorPane anchorPaneLeftNavSection;
 
     @FXML
+    private AnchorPane anchorPaneLeftNavSection1;
+
+    @FXML
     private AnchorPane anchorPaneLeftNavStrand;
 
     @FXML
@@ -63,6 +67,9 @@ public class mainController {
 
     @FXML
     private JFXButton btnLeftNavApplicants;
+
+    @FXML
+    private JFXButton btnLeftNavContactUs;
 
     @FXML
     private JFXButton btnLeftNavDashboard;
@@ -123,6 +130,15 @@ public class mainController {
 
     @FXML
     private Label labelAnchorPaneAdminDashboardTeachers;
+
+    @FXML
+    private Label labelContactUsEmailAddress;
+
+    @FXML
+    private Label labelContactUsLocation;
+
+    @FXML
+    private Label labelContactUsPhone;
 
     @FXML
     private Label labelScheduleAnchorPaneTopNavSchedule;
@@ -365,6 +381,15 @@ public class mainController {
     private TextArea textAreaMessageAnchorPaneContactUs;
 
     @FXML
+    private MFXTextField textFieldContactEmailAddress;
+
+    @FXML
+    private MFXTextField textFieldContactLocation;
+
+    @FXML
+    private MFXTextField textFieldContactNumber;
+
+    @FXML
     private TextField textFieldEmailAddressAnchorPaneContactUs;
 
     @FXML
@@ -433,12 +458,22 @@ public class mainController {
     }
 
     @FXML
+    void btnContactSaveChangesOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnEnrollNowanchorPaneTopNavDashboardOnAction(ActionEvent event) {
 
     }
 
     @FXML
     void btnLeftNavApplicantsOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnLeftNavContactUsOnAction(ActionEvent event) {
 
     }
 
