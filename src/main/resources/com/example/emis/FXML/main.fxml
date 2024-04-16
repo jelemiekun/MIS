@@ -169,6 +169,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints fx:id="rowLastSchedule" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="MONDAY" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -436,6 +437,36 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
+                        <Label text="2:00-3:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTeacherSchedule06" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTeacherSchedule16" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTeacherSchedule26" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTeacherSchedule36" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTeacherSchedule46" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -586,7 +617,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorPaneLeftNav" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;">
+            <AnchorPane fx:id="anchorPaneLeftNav" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;" visible="false">
                <children>
                   <Line endX="199.0" stroke="WHITE" />
                   <FlowPane prefHeight="360.0" prefWidth="200.0">
@@ -770,7 +801,7 @@
                      </children>
                   </FlowPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="anchorPaneLeftNavTeachers" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0">
+            <AnchorPane fx:id="anchorPaneLeftNavTeachers" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false">
                <children>
                   <JFXButton alignment="CENTER" layoutX="28.0" layoutY="28.0" onAction="#btnAddTeacherAnchorPaneTeacherOnAction" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: #06D096;" text="+ Add Teacher" textFill="WHITE">
                      <font>
@@ -796,7 +827,7 @@
                     </columns>
                   </TableView>
                </children></AnchorPane>
-            <AnchorPane fx:id="anchorPaneLeftNavStrand" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0" visible="false">
+            <AnchorPane fx:id="anchorPaneLeftNavStrand" layoutX="200.0" prefHeight="720.0" prefWidth="1080.0">
                <children>
                   <JFXButton alignment="CENTER" layoutX="28.0" layoutY="27.0" onAction="#btnAddStrandAnchorPaneTeacherOnAction" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: #06D096;" text="+ Add Strand" textFill="WHITE">
                      <font>

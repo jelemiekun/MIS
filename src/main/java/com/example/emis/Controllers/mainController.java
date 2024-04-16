@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class mainController {
@@ -157,6 +158,9 @@ public class mainController {
     private Label labelTeacherSchedule05;
 
     @FXML
+    private Label labelTeacherSchedule06;
+
+    @FXML
     private Label labelTeacherSchedule10;
 
     @FXML
@@ -173,6 +177,9 @@ public class mainController {
 
     @FXML
     private Label labelTeacherSchedule15;
+
+    @FXML
+    private Label labelTeacherSchedule16;
 
     @FXML
     private Label labelTeacherSchedule20;
@@ -193,6 +200,9 @@ public class mainController {
     private Label labelTeacherSchedule25;
 
     @FXML
+    private Label labelTeacherSchedule26;
+
+    @FXML
     private Label labelTeacherSchedule30;
 
     @FXML
@@ -209,6 +219,9 @@ public class mainController {
 
     @FXML
     private Label labelTeacherSchedule35;
+
+    @FXML
+    private Label labelTeacherSchedule36;
 
     @FXML
     private Label labelTeacherSchedule40;
@@ -229,7 +242,13 @@ public class mainController {
     private Label labelTeacherSchedule45;
 
     @FXML
+    private Label labelTeacherSchedule46;
+
+    @FXML
     private MapView mapViewContactUs;
+
+    @FXML
+    private RowConstraints rowLastSchedule;
 
     @FXML
     private TableView<?> tableViewApplicantsAnchorPaneEnroll;

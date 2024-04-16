@@ -51,6 +51,9 @@ public class teacherController {
     private Label labelTeacherSchedule05;
 
     @FXML
+    private Label labelTeacherSchedule06;
+
+    @FXML
     private Label labelTeacherSchedule10;
 
     @FXML
@@ -67,6 +70,9 @@ public class teacherController {
 
     @FXML
     private Label labelTeacherSchedule15;
+
+    @FXML
+    private Label labelTeacherSchedule16;
 
     @FXML
     private Label labelTeacherSchedule20;
@@ -87,6 +93,9 @@ public class teacherController {
     private Label labelTeacherSchedule25;
 
     @FXML
+    private Label labelTeacherSchedule26;
+
+    @FXML
     private Label labelTeacherSchedule30;
 
     @FXML
@@ -105,6 +114,9 @@ public class teacherController {
     private Label labelTeacherSchedule35;
 
     @FXML
+    private Label labelTeacherSchedule36;
+
+    @FXML
     private Label labelTeacherSchedule40;
 
     @FXML
@@ -121,6 +133,9 @@ public class teacherController {
 
     @FXML
     private Label labelTeacherSchedule45;
+
+    @FXML
+    private Label labelTeacherSchedule46;
 
     @FXML
     private TextField textFieldTeacherName;
@@ -161,6 +176,11 @@ public class teacherController {
     }
 
     @FXML
+    void flowPane06(MouseEvent event) {
+
+    }
+
+    @FXML
     void flowPane10(MouseEvent event) {
 
     }
@@ -187,6 +207,11 @@ public class teacherController {
 
     @FXML
     void flowPane15(MouseEvent event) {
+
+    }
+
+    @FXML
+    void flowPane16(MouseEvent event) {
 
     }
 
@@ -221,6 +246,11 @@ public class teacherController {
     }
 
     @FXML
+    void flowPane26(MouseEvent event) {
+
+    }
+
+    @FXML
     void flowPane30(MouseEvent event) {
 
     }
@@ -251,6 +281,11 @@ public class teacherController {
     }
 
     @FXML
+    void flowPane36(MouseEvent event) {
+
+    }
+
+    @FXML
     void flowPane40(MouseEvent event) {
 
     }
@@ -277,6 +312,11 @@ public class teacherController {
 
     @FXML
     void flowPane45(MouseEvent event) {
+
+    }
+
+    @FXML
+    void flowPane46(MouseEvent event) {
 
     }
 
