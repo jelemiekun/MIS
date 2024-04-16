@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -23,24 +26,39 @@
                <content>
                   <FlowPane prefWidth="1080.0">
                      <children>
-                        <AnchorPane prefHeight="268.0" prefWidth="1080.0">
+                        <AnchorPane prefWidth="1080.0">
                            <children>
-                              <Label layoutX="288.0" layoutY="48.0" text="APPLICATION FORM">
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8edfed90" height="200.0" layoutX="29.0" stroke="#74b8c3" strokeType="INSIDE" width="1020.0" />
+                              <Label layoutX="51.0" layoutY="26.0" prefWidth="980.0" text="NOTE: Incorrect information will invalidate your admission to UMAK. Be sure you have checked your complete name based on your Philippine Statistics Authority (PSA) copy of Birth Certificate." wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <MFXButton layoutX="51.0" layoutY="121.0" style="-fx-background-color: #06D096;" text="SUBMIT APPLICATION" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="205.0" prefWidth="1080.0">
+                           <children>
+                              <Label layoutX="288.0" layoutY="32.0" text="APPLICATION FORM">
                                  <font>
                                     <Font name="System Bold" size="52.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="412.0" layoutY="112.0" text="SENIOR HIGH SCHOOL">
+                              <Label layoutX="412.0" layoutY="96.0" text="SENIOR HIGH SCHOOL">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="447.0" layoutY="152.0" text="ACADEMIC YEAR 2024-2025">
+                              <Label layoutX="447.0" layoutY="136.0" text="ACADEMIC YEAR 2024-2025">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="597.0" layoutY="234.0" text="*Type the complete information based on your PSA Birth Certificate" textAlignment="RIGHT">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="597.0" layoutY="179.0" text="*Type the complete information based on your PSA Birth Certificate" textAlignment="RIGHT">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -62,23 +80,176 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <MFXTextField floatingText="LAST NAME" floatingTextGap="0.0" graphicTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="EMAIL ADDRESS*" floatingTextGap="0.0" graphicTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                     <MFXTextField floatingText="MIDDLE NAME" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <MFXTextField floatingText="FIRST NAME*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <MFXTextField floatingText="FULL NAME" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <MFXTextField floatingText="FULL NAME" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <MFXTextField floatingText="FULL NAME" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="AGE*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="CONTACT NUMBER*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                     <MFXTextField floatingText="LAST NAME*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <MFXDatePicker floatMode="INLINE" floatingText="DATE OF BIRTH*" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <MFXComboBox prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <MFXComboBox prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <MFXComboBox prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXComboBox floatingText="CIVIL STATUS*" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <MFXComboBox floatingText="RELIGION*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <MFXComboBox floatingText="SELECT SEX*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXComboBox floatingText="CIVIL STATUS*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
+                              <Label layoutX="47.0" layoutY="13.0" text="PERSONAL INFORMATION" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="1080.0">
+                           <children>
+                              <GridPane alignment="CENTER" layoutX="30.0" layoutY="51.0" prefHeight="150.0" prefWidth="1020.0" style="-fx-border-color: black; -fx-border-radius: 3px;">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <MFXTextField floatingText="HOME ADDRESS* (CURRENT ADDRESS)" floatingTextGap="0.0" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="PROVINCIAL ADDRESS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
+                              <Label layoutX="47.0" layoutY="13.0" text="COMPLETE ADDRESS" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="1080.0">
+                           <children>
+                              <GridPane alignment="CENTER" layoutX="30.0" layoutY="51.0" prefHeight="150.0" prefWidth="1020.0" style="-fx-border-color: black; -fx-border-radius: 3px;">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                                 <children>
+                                    <MFXComboBox floatingText="1ST CHOICE*" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <MFXComboBox floatingText="2ND CHOICE*" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
+                              <Label layoutX="47.0" layoutY="13.0" text="PREFERRED STRAND" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="1080.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="1080.0">
+                           <children>
+                              <GridPane alignment="CENTER" layoutX="30.0" layoutY="51.0" prefHeight="215.0" prefWidth="1020.0" style="-fx-border-color: black; -fx-border-radius: 3px;">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="1.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <MFXTextField floatingText="NAME OF SCHOOL*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Label text="Elementary School" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Junior High School" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <MFXTextField floatingText="SCHOOL ADDRESS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="INCLUSIVE YEARS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="INCLUSIVE YEARS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="SCHOOL ADDRESS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <MFXTextField floatingText="NAME OF SCHOOL*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Label text="INCLUSIVE YEARS&#10;(YYYY-YYYY)" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Label text="ADDRESS OF SCHOOL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Label text="NAME OF SCHOOL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
+                              <Label layoutX="47.0" layoutY="13.0" text="EDUCATIONAL BACKGROUND" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane prefWidth="1080.0">
+                           <children>
+                              <GridPane alignment="CENTER" layoutX="30.0" layoutY="51.0" prefHeight="80.0" prefWidth="1020.0" style="-fx-border-color: black; -fx-border-radius: 3px;">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                                 <children>
+                                    <FlowPane alignment="CENTER_LEFT" hgap="30.0" vgap="20.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <MFXCheckbox text="Form 137*" />
+                                          <MFXCheckbox text="Form 138*" />
+                                          <MFXCheckbox text="Good Moral*" />
+                                       </children>
+                                    </FlowPane>
+                                 </children>
+                              </GridPane>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
+                              <Label layoutX="47.0" layoutY="13.0" text="DOCUMENTS" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="40.0" />
+                           </padding>
+                        </AnchorPane>
                      </children>
                   </FlowPane>
                </content>
