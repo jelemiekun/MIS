@@ -2,6 +2,7 @@ package com.example.emis.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,9 @@ public class loginRegisterController {
 
     @FXML
     private AnchorPane anchorPane;
+
+    @FXML
+    private Label btnCreateAccountTeacher;
 
     @FXML
     private PasswordField passwordFieldLoginPassword;
@@ -43,6 +47,11 @@ public class loginRegisterController {
 
     @FXML
     void anchorPaneRequestFocus(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnCreateAccountTeacherClicked(MouseEvent event) {
 
     }
 
