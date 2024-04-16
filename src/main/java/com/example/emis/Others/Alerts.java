@@ -1,6 +1,9 @@
 package com.example.emis.Others;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class Alerts {
     public static void alertUnexpectedError() {
@@ -25,5 +28,23 @@ public class Alerts {
         alert.setHeaderText("Incorrect email/password");
         alert.setContentText("The email or password you entered is incorrect. Please try again.");
         alert.show();
+    }
+
+    public static boolean alertConfirmLogout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Confirm log-out?");
+        alert.setContentText("Select 'yes' to log-out and 'no' to stay logged-in.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            return true; // clicked 'yes'
+        } else {
+            return false; // clicked 'no'
+        }
     }
 }

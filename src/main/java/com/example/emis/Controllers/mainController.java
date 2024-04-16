@@ -1,8 +1,10 @@
 package com.example.emis.Controllers;
 
+import com.example.emis.Models.mainModel;
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,540 +21,308 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.emis.Enums.SQLRolesEnum.*;
-import static com.example.emis.Others.SQL.*;
-
 public class mainController implements Initializable {
-    private String emailUsing = "";
-
-
-    @FXML
-    private AnchorPane anchorPaneCenter;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNav;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavDashboard;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavEnroll;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavSection;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavSection1;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavStrand;
-
-    @FXML
-    private AnchorPane anchorPaneLeftNavTeachers;
-
-    @FXML
-    private AnchorPane anchorPaneTeacherDetails;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavContactUs;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavDashboard;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavEnrolled;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavHome;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavSchedule;
-
-    @FXML
-    private AnchorPane anchorPaneTopNavSections;
-
-    @FXML
-    private JFXButton btnLeftNavApplicants;
-
-    @FXML
-    private JFXButton btnLeftNavContactUs;
-
-    @FXML
-    private JFXButton btnLeftNavDashboard;
-
-    @FXML
-    private JFXButton btnLeftNavSection;
-
-    @FXML
-    private JFXButton btnLeftNavStrand;
-
-    @FXML
-    private JFXButton btnLeftNavTeachers;
-
-    @FXML
-    private JFXButton btnSearchAnchorPaneEnrolledStudent1;
-
-    @FXML
-    private JFXButton btnTopNavContactUs;
-
-    @FXML
-    private JFXButton btnTopNavDashboard;
-
-    @FXML
-    private JFXButton btnTopNavEnrolled;
-
-    @FXML
-    private JFXButton btnTopNavHome;
-
-    @FXML
-    private JFXButton btnTopNavLogOut;
-
-    @FXML
-    private JFXButton btnTopNavSchedule;
-
-    @FXML
-    private JFXButton btnTopNavSections;
-
-    @FXML
-    private FlowPane flowPaneTopNav;
-
-    @FXML
-    private GridPane gridPaneScheduleAnchorPaneTopNavSchedule;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardApplicants;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardDeclined;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardEnrolled;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardSections;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardStrands;
-
-    @FXML
-    private Label labelAnchorPaneAdminDashboardTeachers;
-
-    @FXML
-    private Label labelContactUsEmailAddress;
-
-    @FXML
-    private Label labelContactUsLocation;
-
-    @FXML
-    private Label labelContactUsPhone;
-
-    @FXML
-    private Label labelScheduleAnchorPaneTopNavSchedule;
-
-    @FXML
-    private Label labelSectionsHandlinganchorPaneTopNavDashboard;
-
-    @FXML
-    private Label labelStudentsHandlinganchorPaneTopNavDashboard;
-
-    @FXML
-    private Label labelTeacherDepartmentAnchorPaneTeacherDetails;
-
-    @FXML
-    private Label labelTeacherNameAnchorPaneTeacherDetails;
-
-    @FXML
-    private Label labelTeacherSchedule00;
-
-    @FXML
-    private Label labelTeacherSchedule01;
-
-    @FXML
-    private Label labelTeacherSchedule02;
-
-    @FXML
-    private Label labelTeacherSchedule03;
-
-    @FXML
-    private Label labelTeacherSchedule04;
-
-    @FXML
-    private Label labelTeacherSchedule05;
-
-    @FXML
-    private Label labelTeacherSchedule06;
-
-    @FXML
-    private Label labelTeacherSchedule10;
-
-    @FXML
-    private Label labelTeacherSchedule11;
-
-    @FXML
-    private Label labelTeacherSchedule12;
-
-    @FXML
-    private Label labelTeacherSchedule13;
-
-    @FXML
-    private Label labelTeacherSchedule14;
-
-    @FXML
-    private Label labelTeacherSchedule15;
-
-    @FXML
-    private Label labelTeacherSchedule16;
-
-    @FXML
-    private Label labelTeacherSchedule20;
-
-    @FXML
-    private Label labelTeacherSchedule21;
-
-    @FXML
-    private Label labelTeacherSchedule22;
-
-    @FXML
-    private Label labelTeacherSchedule23;
-
-    @FXML
-    private Label labelTeacherSchedule24;
-
-    @FXML
-    private Label labelTeacherSchedule25;
-
-    @FXML
-    private Label labelTeacherSchedule26;
-
-    @FXML
-    private Label labelTeacherSchedule30;
-
-    @FXML
-    private Label labelTeacherSchedule31;
-
-    @FXML
-    private Label labelTeacherSchedule32;
-
-    @FXML
-    private Label labelTeacherSchedule33;
-
-    @FXML
-    private Label labelTeacherSchedule34;
-
-    @FXML
-    private Label labelTeacherSchedule35;
-
-    @FXML
-    private Label labelTeacherSchedule36;
-
-    @FXML
-    private Label labelTeacherSchedule40;
-
-    @FXML
-    private Label labelTeacherSchedule41;
-
-    @FXML
-    private Label labelTeacherSchedule42;
-
-    @FXML
-    private Label labelTeacherSchedule43;
-
-    @FXML
-    private Label labelTeacherSchedule44;
-
-    @FXML
-    private Label labelTeacherSchedule45;
-
-    @FXML
-    private Label labelTeacherSchedule46;
-
-    @FXML
-    private MapView mapViewContactUs;
-
-    @FXML
-    private RowConstraints rowLastSchedule;
-
-    @FXML
-    private TableView<?> tableViewApplicantsAnchorPaneEnroll;
-
-    @FXML
-    private TableColumn<?, ?> tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll;
-
-    @FXML
-    private TableColumn<?, ?> tableViewApplicantsColumnFullNameAnchorPaneEnroll;
-
-    @FXML
-    private TableView<?> tableViewDeclinedAnchorPaneEnroll;
-
-    @FXML
-    private TableColumn<?, ?> tableViewDeclinedColumnFullNameAnchorPaneEnroll;
-
-    @FXML
-    private TableView<?> tableViewEnrolledAnchorPaneEnroll;
-
-    @FXML
-    private TableColumn<?, ?> tableViewEnrolledColumnFullNameAnchorPaneEnroll;
-
-    @FXML
-    private TableView<?> tableViewEnrolledStudentAnchorPaneEnrolled;
-
-    @FXML
-    private TableColumn<?, ?> tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled;
-
-    @FXML
-    private TableColumn<?, ?> tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled;
-
-    @FXML
-    private TableColumn<?, ?> tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled;
-
-    @FXML
-    private TableView<?> tableViewSectionAnchorPaneAdmin;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnDeleteAnchorPaneAdmin;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnScheduleAnchorPaneAdmin;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnSectionHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnSectionNameAnchorPaneAdmin;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnStrandAnchorPaneAdmin;
-
-    @FXML
-    private TableColumn<?, ?> tableViewSectionColumnStrandHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableView<?> tableViewSectionHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableView<?> tableViewStrandAnchorPaneStrand;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStrandColumnDeleteAnchorPaneStrand;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStrandColumnStrandNameAnchorPaneStrand;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnAgeHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnBirthdateHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnEmailHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnFirstNameHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnLRNHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnLastNameHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnMiddleNameHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnPhoneNumberHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableColumn<?, ?> tableViewStudentColumnSexHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableView<?> tableViewStudentHandlinganchorPaneTopNavSections;
-
-    @FXML
-    private TableView<?> tableViewTeacherAnchorPaneTeachers;
-
-    @FXML
-    private TableColumn<?, ?> tableViewTeacherColumnDeleteAnchorPaneTeachers;
-
-    @FXML
-    private TableColumn<?, ?> tableViewTeacherColumnDepartmentAnchorPaneTeachers;
-
-    @FXML
-    private TableColumn<?, ?> tableViewTeacherColumnFullNameAnchorPaneTeachers;
-
-    @FXML
-    private TableColumn<?, ?> tableViewTeacherColumnScheduleAnchorPaneTeachers;
-
-    @FXML
-    private TextArea textAreaMessageAnchorPaneContactUs;
-
-    @FXML
-    private MFXTextField textFieldContactEmailAddress;
-
-    @FXML
-    private MFXTextField textFieldContactLocation;
-
-    @FXML
-    private MFXTextField textFieldContactNumber;
-
-    @FXML
-    private TextField textFieldEmailAddressAnchorPaneContactUs;
-
-    @FXML
-    private TextField textFieldFullNameAnchorPaneContactUs;
-
-    @FXML
-    private TextField textFieldSearchSectionNameAnchorPaneEnrolledStudent;
-
-    @FXML
-    private TextField textFieldSearchStudentNameAnchorPaneEnrolledStudent;
-
-    @FXML
-    private TextField textFieldSearchStudentNameAnchorPaneEnrolledStudent1;
-
-    @FXML
-    private VBox vBoxMapAnchorPaneContactUs;
-
-    @FXML
-    void anchorPaneRequestFocus(MouseEvent event) {
+    public String emailUsing = "";
+
+    public String styleTabSelected = "-fx-background-color: #1172e1;";
+    public String styleTabNotSelected = "-fx-background-color:  #0A53B0";
+
+    private mainModel mainModel1;
+    // Anchor Panes
+    public AnchorPane anchorPaneCenter;
+    public AnchorPane anchorPaneLeftNav;
+    public AnchorPane anchorPaneLeftNavDashboard;
+    public AnchorPane anchorPaneLeftNavEnroll;
+    public AnchorPane anchorPaneLeftNavSection;
+    public AnchorPane anchorPaneLeftNavContactUsDetails;
+    public AnchorPane anchorPaneLeftNavStrand;
+    public AnchorPane anchorPaneLeftNavTeachers;
+    public AnchorPane anchorPaneTeacherDetails;
+    public AnchorPane anchorPaneTopNavContactUs;
+    public AnchorPane anchorPaneTopNavDashboard;
+    public AnchorPane anchorPaneTopNavEnrolled;
+    public AnchorPane anchorPaneTopNavHome;
+    public AnchorPane anchorPaneTopNavSchedule;
+    public AnchorPane anchorPaneTopNavSections;
+
+    // Buttons
+    public JFXButton btnLeftNavApplicants;
+    public JFXButton btnLeftNavContactUs;
+    public JFXButton btnLeftNavDashboard;
+    public JFXButton btnLeftNavSection;
+    public JFXButton btnLeftNavStrand;
+    public JFXButton btnLeftNavTeachers;
+    public JFXButton btnSearchAnchorPaneEnrolledStudent1;
+    public JFXButton btnTopNavContactUs;
+    public JFXButton btnTopNavDashboard;
+    public JFXButton btnTopNavEnrolled;
+    public JFXButton btnTopNavHome;
+    public JFXButton btnTopNavLogOut;
+    public JFXButton btnTopNavSchedule;
+    public JFXButton btnTopNavSections;
+
+    // Flow Pane
+    public FlowPane flowPaneTopNav;
+
+    // Grid Pane
+    public GridPane gridPaneScheduleAnchorPaneTopNavSchedule;
+
+    // Labels
+    public Label labelAnchorPaneAdminDashboardApplicants;
+    public Label labelAnchorPaneAdminDashboardDeclined;
+    public Label labelAnchorPaneAdminDashboardEnrolled;
+    public Label labelAnchorPaneAdminDashboardSections;
+    public Label labelAnchorPaneAdminDashboardStrands;
+    public Label labelAnchorPaneAdminDashboardTeachers;
+    public Label labelContactUsEmailAddress;
+    public Label labelContactUsLocation;
+    public Label labelContactUsPhone;
+    public Label labelScheduleAnchorPaneTopNavSchedule;
+    public Label labelSectionsHandlingAnchorPaneTopNavDashboard;
+    public Label labelStudentsHandlingAnchorPaneTopNavDashboard;
+    public Label labelTeacherDepartmentAnchorPaneTeacherDetails;
+    public Label labelTeacherNameAnchorPaneTeacherDetails;
+    public Label labelTeacherSchedule00;
+    public Label labelTeacherSchedule01;
+    public Label labelTeacherSchedule02;
+    public Label labelTeacherSchedule03;
+    public Label labelTeacherSchedule04;
+    public Label labelTeacherSchedule05;
+    public Label labelTeacherSchedule06;
+    public Label labelTeacherSchedule10;
+    public Label labelTeacherSchedule11;
+    public Label labelTeacherSchedule12;
+    public Label labelTeacherSchedule13;
+    public Label labelTeacherSchedule14;
+    public Label labelTeacherSchedule15;
+    public Label labelTeacherSchedule16;
+    public Label labelTeacherSchedule20;
+    public Label labelTeacherSchedule21;
+    public Label labelTeacherSchedule22;
+    public Label labelTeacherSchedule23;
+    public Label labelTeacherSchedule24;
+    public Label labelTeacherSchedule25;
+    public Label labelTeacherSchedule26;
+    public Label labelTeacherSchedule30;
+    public Label labelTeacherSchedule31;
+    public Label labelTeacherSchedule32;
+    public Label labelTeacherSchedule33;
+    public Label labelTeacherSchedule34;
+    public Label labelTeacherSchedule35;
+    public Label labelTeacherSchedule36;
+    public Label labelTeacherSchedule40;
+    public Label labelTeacherSchedule41;
+    public Label labelTeacherSchedule42;
+    public Label labelTeacherSchedule43;
+    public Label labelTeacherSchedule44;
+    public Label labelTeacherSchedule45;
+    public Label labelTeacherSchedule46;
+
+    // MapView
+    public MapView mapViewContactUs;
+
+    // Row Constraints
+    public RowConstraints rowLastSchedule;
+
+    // TableViews
+    public TableView<?> tableViewApplicantsAnchorPaneEnroll;
+    public TableView<?> tableViewDeclinedAnchorPaneEnroll;
+    public TableView<?> tableViewEnrolledAnchorPaneEnroll;
+    public TableView<?> tableViewEnrolledStudentAnchorPaneEnrolled;
+    public TableView<?> tableViewSectionAnchorPaneAdmin;
+    public TableView<?> tableViewSectionHandlingAnchorPaneTopNavSections;
+    public TableView<?> tableViewStrandAnchorPaneStrand;
+    public TableView<?> tableViewStudentHandlingAnchorPaneTopNavSections;
+    public TableView<?> tableViewTeacherAnchorPaneTeachers;
+
+    // TableColumns
+    public TableColumn<?, ?> tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll;
+    public TableColumn<?, ?> tableViewApplicantsColumnFullNameAnchorPaneEnroll;
+    public TableColumn<?, ?> tableViewDeclinedColumnFullNameAnchorPaneEnroll;
+    public TableColumn<?, ?> tableViewEnrolledColumnFullNameAnchorPaneEnroll;
+    public TableColumn<?, ?> tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled;
+    public TableColumn<?, ?> tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled;
+    public TableColumn<?, ?> tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled;
+    public TableColumn<?, ?> tableViewSectionColumnDeleteAnchorPaneAdmin;
+    public TableColumn<?, ?> tableViewSectionColumnScheduleAnchorPaneAdmin;
+    public TableColumn<?, ?> tableViewSectionColumnSectionHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewSectionColumnSectionNameAnchorPaneAdmin;
+    public TableColumn<?, ?> tableViewSectionColumnStrandAnchorPaneAdmin;
+    public TableColumn<?, ?> tableViewSectionColumnStrandHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStrandColumnDeleteAnchorPaneStrand;
+    public TableColumn<?, ?> tableViewStrandColumnStrandNameAnchorPaneStrand;
+    public TableColumn<?, ?> tableViewStudentColumnAgeHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnBirthdateHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnEmailHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnFirstNameHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnLRNHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnLastNameHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnMiddleNameHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnPhoneNumberHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewStudentColumnSexHandlingAnchorPaneTopNavSections;
+    public TableColumn<?, ?> tableViewTeacherColumnDeleteAnchorPaneTeachers;
+    public TableColumn<?, ?> tableViewTeacherColumnDepartmentAnchorPaneTeachers;
+    public TableColumn<?, ?> tableViewTeacherColumnFullNameAnchorPaneTeachers;
+    public TableColumn<?, ?> tableViewTeacherColumnScheduleAnchorPaneTeachers;
+
+    // TextArea
+    public TextArea textAreaMessageAnchorPaneContactUs;
+
+    // MFXTextField
+    public MFXTextField textFieldContactEmailAddress;
+    public MFXTextField textFieldContactLocation;
+    public MFXTextField textFieldContactNumber;
+
+    // TextField
+    public TextField textFieldEmailAddressAnchorPaneContactUs;
+    public TextField textFieldFullNameAnchorPaneContactUs;
+    public TextField textFieldSearchSectionNameAnchorPaneEnrolledStudent;
+    public TextField textFieldSearchStudentNameAnchorPaneEnrolledStudent;
+    public TextField textFieldSearchStudentNameAnchorPaneEnrolledStudent1;
+
+    // VBox
+    public VBox vBoxMapAnchorPaneContactUs;
+    @FXML
+    void anchorPaneRequestFocus() {
+        anchorPaneCenter.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavContactUsRequestFocus() {
+        anchorPaneTopNavContactUs.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavDashboardRequestFocus() {
+        anchorPaneTopNavDashboard.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavEnrolledRequestFocus() {
+        anchorPaneTopNavEnrolled.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavHomeRequestFocus() {
+        anchorPaneTopNavHome.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavScheduleRequestFocus() {
+        anchorPaneTopNavSchedule.requestFocus();
+    }
+
+    @FXML
+    void anchorPaneTopNavSectionsRequestFocus() {
+        anchorPaneTopNavSections.requestFocus();
+    }
+
+    @FXML
+    void btnAddSectionAnchorPaneTeacherOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavContactUsRequestFocus(MouseEvent event) {
+    void btnAddStrandAnchorPaneTeacherOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavDashboardRequestFocus(MouseEvent event) {
+    void btnAddTeacherAnchorPaneTeacherOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavEnrolledRequestFocus(MouseEvent event) {
+    void btnContactSaveChangesOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavHomeRequestFocus(MouseEvent event) {
+    void btnEnrollNowAnchorPaneTopNavDashboardOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavScheduleRequestFocus(MouseEvent event) {
+    void btnLeftNavDashboardOnAction() {
+        mainModel1.switchTabForMIS(1);
+    }
+
+    @FXML
+    void btnLeftNavApplicantsOnAction() {
+        mainModel1.switchTabForMIS(2);
+    }
+
+    @FXML
+    void btnLeftNavTeachersOnAction() {
+        mainModel1.switchTabForMIS(3);
+    }
+
+    @FXML
+    void btnLeftNavStrandOnAction() {
+        mainModel1.switchTabForMIS(4);
+    }
+
+    @FXML
+    void btnLeftNavSectionOnAction() {
+        mainModel1.switchTabForMIS(5);
+    }
+
+    @FXML
+    void btnLeftNavContactUsOnAction() {
+        mainModel1.switchTabForMIS(6);
+    }
+
+    @FXML
+    void btnSearchAnchorPaneEnrolledStudentOnAction() {
 
     }
 
     @FXML
-    void anchorPaneTopNavSectionsRequestFocus(MouseEvent event) {
+    void btnSearchAnchorPaneSectionNameOnAction() {
 
     }
 
     @FXML
-    void btnAddSectionAnchorPaneTeacherOnAction(ActionEvent event) {
+    void btnSubmitAnchorPaneContactUsOnAction() {
 
     }
 
     @FXML
-    void btnAddStrandAnchorPaneTeacherOnAction(ActionEvent event) {
+    void btnTopNavContactUsOnAction() {
 
     }
 
     @FXML
-    void btnAddTeacherAnchorPaneTeacherOnAction(ActionEvent event) {
+    void btnTopNavDashboardOnAction() {
 
     }
 
     @FXML
-    void btnContactSaveChangesOnAction(ActionEvent event) {
+    void btnTopNavEnrolledOnAction() {
 
     }
 
     @FXML
-    void btnEnrollNowanchorPaneTopNavDashboardOnAction(ActionEvent event) {
+    void btnTopNavHomeOnAction() {
 
     }
 
     @FXML
-    void btnLeftNavApplicantsOnAction(ActionEvent event) {
+    void btnTopNavLogOutOnAction() throws IOException {
+        mainModel1.logOut();
+    }
+
+    @FXML
+    void btnTopNavScheduleOnAction() {
 
     }
 
     @FXML
-    void btnLeftNavContactUsOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnLeftNavDashboardOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnLeftNavSectionOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnLeftNavStrandOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnLeftNavTeachersOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSearchAnchorPaneEnrolledStudentOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSearchAnchorPaneSectionNameOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSubmitAnchorPaneContactUsOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavContactUsOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavDashboardOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavEnrolledOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavHomeOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavLogOutOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavScheduleOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnTopNavSectionsOnAction(ActionEvent event) {
+    void btnTopNavSectionsOnAction() {
 
     }
 
@@ -572,7 +342,7 @@ public class mainController implements Initializable {
     }
 
     @FXML
-    void tableViewSectionHandlinganchorPaneTopNavSectionsSingleClicked(MouseEvent event) {
+    void tableViewSectionHandlingAnchorPaneTopNavSectionsSingleClicked(MouseEvent event) {
 
     }
 
@@ -596,36 +366,18 @@ public class mainController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        whatRole();
-    }
-
     void setEmailUsing(String emailUsing) {
         this.emailUsing = emailUsing;
     }
 
-    private void whatRole() {
-        String role = SQLWhatRole(emailUsing);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> {
+            mainModel1 = new mainModel();
+            mainModel1.setMainController1(this);
+            mainModel1.whatRole();
 
-        if (role.equals(MIS_ROLE_ENUM.getRole())) {
-
-        } else if (role.equals(TEACHER_ROLE_ENUM.getRole())) {
-
-        } else if (role.equals(STUDENT_ROLE_ENUM.getRole())) {
-
-        }
-    }
-
-    private void loadForMIS() {
-
-    }
-
-    private void loadForTeacher() {
-
-    }
-
-    private void loadForStudent() {
-
+            anchorPaneRequestFocus();
+        });
     }
 }

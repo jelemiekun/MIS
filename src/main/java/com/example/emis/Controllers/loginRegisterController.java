@@ -2,8 +2,10 @@ package com.example.emis.Controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,19 +15,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import static com.example.emis.Others.Alerts.*;
 import static com.example.emis.Enums.ImagesEnum.*;
 import static com.example.emis.Others.SQL.*;
 import static com.example.emis.Enums.ScenesEnum.*;
 
-public class loginRegisterController {
+public class loginRegisterController implements Initializable {
 
     private boolean createAnAccountAs = false;
     private boolean toggleLoginPassword = false;
@@ -84,7 +87,7 @@ public class loginRegisterController {
     private JFXCheckBox checkBoxTermsAndConditions;
 
     @FXML
-    void anchorPaneRequestFocus(MouseEvent event) {
+    void anchorPaneRequestFocus() {
         anchorPane.requestFocus();
     }
 
@@ -228,13 +231,18 @@ public class loginRegisterController {
         mainControllerInstance.setEmailUsing(email);
         Stage stage = new Stage();
         Scene scene = new Scene(root);
-        Image logo = new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl())));
         stage.setTitle(MAIN_SCENE.getTitle());
-        stage.getIcons().add(logo);
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl()))));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
 
         Stage thisStage = (Stage) anchorPane.getScene().getWindow();
         thisStage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(this::anchorPaneRequestFocus);
     }
 }

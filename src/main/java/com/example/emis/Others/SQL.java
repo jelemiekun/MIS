@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 
+import static com.example.emis.Enums.SQLRolesEnum.*;
 import static com.example.emis.Others.Alerts.*;
 
 public class SQL {
@@ -83,7 +84,7 @@ public class SQL {
     }
 
     public static String SQLWhatRole(String email) {
-        String query = "SELECT role FROM mis WHERE email = ?";
+        String query = "SELECT role FROM login_register WHERE email = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, email);
@@ -95,5 +96,6 @@ public class SQL {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 }
