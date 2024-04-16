@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +14,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.studentInfoController">
    <center>
@@ -60,17 +61,15 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <MFXTextField floatingText="LAST NAME" prefHeight="49.0" prefWidth="309.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <MFXButton GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <JFXButton text="Buttons" GridPane.rowIndex="2" />
+                                    <MFXTextField floatingText="FULL NAME" prefHeight="49.0" prefWidth="324.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="1080.0">
-                           <children>
-                              <AnchorPane layoutX="42.0" layoutY="-34.0" prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="1080.0" />
                      </children>
                   </FlowPane>
                </content>

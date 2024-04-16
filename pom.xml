@@ -118,6 +118,12 @@
       <artifactId>materialfx</artifactId>
       <version>11.17.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/io.github.palexdev/virtualizedfx -->
+    <dependency>
+      <groupId>io.github.palexdev</groupId>
+      <artifactId>virtualizedfx</artifactId>
+      <version>11.2.6</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/io.github.palexdev/mfxeffects -->
     <dependency>
       <groupId>io.github.palexdev</groupId>
