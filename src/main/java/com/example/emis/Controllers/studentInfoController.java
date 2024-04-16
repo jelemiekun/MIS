@@ -1,5 +1,6 @@
 package com.example.emis.Controllers;
 
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -14,7 +15,25 @@ public class studentInfoController {
     private AnchorPane anchorPaneEnrollDeclineButtons;
 
     @FXML
+    private AnchorPane anchorPaneSubmittion;
+
+    @FXML
+    private MFXCheckbox checkBoxForm137;
+
+    @FXML
+    private MFXCheckbox checkBoxForm138;
+
+    @FXML
+    private MFXCheckbox checkBoxGoodMoral;
+
+    @FXML
     private MFXComboBox<?> comboBoxCivilStatus;
+
+    @FXML
+    private MFXComboBox<?> comboBoxFirstChoice;
+
+    @FXML
+    private MFXComboBox<?> comboBoxSecondChoice;
 
     @FXML
     private MFXComboBox<?> comboBoxSex;
@@ -41,6 +60,9 @@ public class studentInfoController {
     private MFXTextField textFieldFirstName;
 
     @FXML
+    private MFXTextField textFieldHomeAddress;
+
+    @FXML
     private MFXTextField textFieldLastName;
 
     @FXML
@@ -50,12 +72,25 @@ public class studentInfoController {
     private MFXTextField textFieldReligion;
 
     @FXML
+    private MFXTextField textxFieldProvincialAddress;
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnDeclineOnAction(ActionEvent event) {
 
     }
 
     @FXML
     void btnEnrollOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSubmitApplicationOnAction(ActionEvent event) {
 
     }
 

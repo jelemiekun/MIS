@@ -262,12 +262,12 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="btnSubmitApplication" layoutX="50.0" layoutY="127.0" prefHeight="50.0" prefWidth="290.0" ripplerFill="BLACK" style="-fx-background-color: #06D096;" text="SUBMIT APPLICATION" textFill="WHITE">
+                              <JFXButton layoutX="50.0" layoutY="127.0" onAction="#btnSubmitApplicationOnAction" prefHeight="50.0" prefWidth="290.0" ripplerFill="BLACK" style="-fx-background-color: #06D096;" text="SUBMIT APPLICATION" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="btnClear" layoutX="349.0" layoutY="127.0" prefHeight="50.0" prefWidth="105.0" ripplerFill="BLACK" style="-fx-background-color: #575757;" text="CLEAR" textFill="WHITE">
+                              <JFXButton layoutX="349.0" layoutY="127.0" onAction="#btnClearOnAction" prefHeight="50.0" prefWidth="105.0" ripplerFill="BLACK" style="-fx-background-color: #575757;" text="CLEAR" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
