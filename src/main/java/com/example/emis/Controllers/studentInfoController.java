@@ -388,6 +388,7 @@ public class studentInfoController implements Initializable {
 
                 if (selectedSection.equals("SELECT SECTION"))
                     selectedSection = "1";
+                
 
                 if (!SQLUpdateSelectedStudentSection(emailUsing, selectedSection))
                     alertUnexpectedError();
