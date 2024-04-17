@@ -307,24 +307,36 @@ public class mainModel {
         }
     }
 
-    public void openEnrollNow(String email) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_INFO_SCENE.getURL()));
-        Parent root = loader.load();
+    public void openEnrollNow(String email) {
+        Thread threadEnrollment = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        studentInfoController studentInfoController = loader.getController();
-        studentInfoController.setRegistrationAndEmail(true, email);
+                Platform.runLater(() -> {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_INFO_SCENE.getURL()));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
 
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(mainController1.anchorPaneCenter.getScene().getWindow());
-
-        stage.setTitle(TEACHER_CREDENTIALS_SCENE.getTitle());
-        stage.getIcons().add(new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl()))));
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.showAndWait();
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    studentInfoController studentInfoController = loader.getController();
+                    studentInfoController.setRegistrationAndEmail(true, email);
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initOwner(mainController1.anchorPaneCenter.getScene().getWindow());
+                    stage.setTitle(TEACHER_CREDENTIALS_SCENE.getTitle());
+                    stage.getIcons().add(new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl()))));
+                    stage.setResizable(false);
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                    System.out.println("Thread " + Thread.currentThread().getName() + " done.");
+                });
+            }
+        });
+        threadEnrollment.start();
     }
 
 

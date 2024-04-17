@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.loginRegisterController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.emis.Controllers.loginRegisterController">
     <center>
         <AnchorPane fx:id="anchorPane" onMouseClicked="#anchorPaneRequestFocus" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0A53B0;" BorderPane.alignment="CENTER">
             <children>
@@ -115,11 +115,11 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <PasswordField fx:id="passwordFieldConfirmNewPassword" onKeyPressed="#registerFieldsPressedEnter" prefHeight="44.0" prefWidth="352.0" promptText="Password" style="-fx-background-color: #0A53B0; -fx-border-color: white; -fx-border-radius: 3px; -fx-text-fill: white;">
+                              <PasswordField fx:id="passwordFieldConfirmNewPassword" onKeyPressed="#registerFieldsPressedEnter" prefHeight="44.0" prefWidth="352.0" promptText="Confirm Password" style="-fx-background-color: #0A53B0; -fx-border-color: white; -fx-border-radius: 3px; -fx-text-fill: white;">
                                  <font>
                                     <Font size="18.0" />
                                  </font></PasswordField>
-                              <TextField fx:id="textFieldRegisterShowConfirmNewPassword" onKeyPressed="#registerFieldsPressedEnter" prefHeight="44.0" prefWidth="352.0" promptText="Password" style="-fx-background-color: #0A53B0; -fx-border-color: white; -fx-border-radius: 3px; -fx-text-fill: white;" visible="false">
+                              <TextField fx:id="textFieldRegisterShowConfirmNewPassword" onKeyPressed="#registerFieldsPressedEnter" prefHeight="44.0" prefWidth="352.0" promptText="Confirm Password" style="-fx-background-color: #0A53B0; -fx-border-color: white; -fx-border-radius: 3px; -fx-text-fill: white;" visible="false">
                                  <font>
                                     <Font name="System" size="18.0" />
                                  </font>

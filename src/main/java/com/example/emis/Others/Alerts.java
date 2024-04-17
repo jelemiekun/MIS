@@ -38,9 +38,17 @@ public class Alerts {
         alert.showAndWait();
     }
 
-    public static void alertRegisterNotSuccess() {
+    public static void alertApplicationSubmitted() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
+        alert.setHeaderText("Application submitted!");
+        alert.setContentText("Your application has been submitted. Please await further instructions regarding enrollment status.");
+        alert.showAndWait();
+    }
+
+    public static void alertRegisterNotSuccess() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
         alert.setHeaderText("Registration Failed");
         alert.setContentText("Your registration has been unsuccessful. Please try again later.");
         alert.showAndWait();
@@ -62,6 +70,22 @@ public class Alerts {
         alert.show();
     }
 
+    public static void alertInvalidAge() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Age error");
+        alert.setContentText("Age input is invalid. Please enter a valid value.");
+        alert.show();
+    }
+
+    public static void alertInvalidLRN() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("LRN error");
+        alert.setContentText("LRN input is invalid. Please enter a valid value.");
+        alert.show();
+    }
+
     public static void alertLoginIncorrectCredentials() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -75,6 +99,24 @@ public class Alerts {
         alert.setTitle("Confirm");
         alert.setHeaderText("Clear all fields?");
         alert.setContentText("Select 'yes' to clear all and 'cancel' to cancel.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            return true; // clicked 'yes'
+        } else {
+            return false; // clicked 'no'
+        }
+    }
+
+    public static boolean alertSubmitApplication() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Submit application?");
+        alert.setContentText("Select 'yes' to submit and 'cancel' to cancel.");
 
         ButtonType buttonTypeYes = new ButtonType("Yes");
         ButtonType buttonTypeNo = new ButtonType("Cancel");

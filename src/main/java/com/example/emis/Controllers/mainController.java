@@ -307,7 +307,7 @@ public class mainController implements Initializable {
     }
 
     @FXML
-    void btnEnrollNowAnchorPaneTopNavDashboardOnAction() throws IOException {
+    void btnEnrollNowAnchorPaneTopNavDashboardOnAction() throws InterruptedException {
         mainModel1.openEnrollNow(emailUsing);
     }
 

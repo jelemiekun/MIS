@@ -1,35 +1,48 @@
 package com.example.emis.Controllers;
 
+import com.example.emis.Objects.Student;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static com.example.emis.Others.Alerts.*;
+import static com.example.emis.Others.SQL.*;
 
 public class studentInfoController implements Initializable {
     private boolean isRegistration = false;
     private boolean isRegistered = false;
     private String emailUsing = "";
+    private boolean comboBoxesClickable = false;
 
     @FXML
     private HBox hBoxMain;
+
+    @FXML
+    private FlowPane flowPane;
 
     @FXML
     private AnchorPane anchorPaneEnrollDeclineButtons;
 
     @FXML
     private AnchorPane anchorPaneSubmit;
+
+    @FXML
+    private Label labelStatus;
 
     @FXML
     private MFXCheckbox checkBoxForm137;
@@ -39,6 +52,9 @@ public class studentInfoController implements Initializable {
 
     @FXML
     private MFXCheckbox checkBoxGoodMoral;
+
+    @FXML
+    private MFXDatePicker datePickerDateOfBirth;
 
     @FXML
     private MFXComboBox<String> comboBoxCivilStatus;
@@ -53,16 +69,13 @@ public class studentInfoController implements Initializable {
     private MFXComboBox<String> comboBoxSex;
 
     @FXML
-    private MFXDatePicker datePickerDateOfBirth;
-
-    @FXML
-    private Label labelStatus;
-
-    @FXML
     private MFXTextField textFieldAge;
 
     @FXML
     private MFXTextField textFieldCitizenShip;
+
+    @FXML
+    private MFXTextField textFieldLRN;
 
     @FXML
     private MFXTextField textFieldContactNumber;
@@ -106,9 +119,75 @@ public class studentInfoController implements Initializable {
     @FXML
     private MFXTextField textFieldJuniorHSSY;
 
+
     @FXML
-    void hBoxMainRequestFocus() {
-        hBoxMain.requestFocus();
+    void btnSubmitApplicationOnAction() {
+        try {
+            String LRN = textFieldLRN.getText().trim();
+            String lastName = textFieldLastName.getText().trim();
+            String firstName = textFieldFirstName.getText().trim();
+            String middleName = textFieldMiddleName.getText().trim();
+            LocalDate birthdate = datePickerDateOfBirth.getValue();
+            int age = Integer.parseInt(textFieldAge.getText().trim());
+            String sex = comboBoxSex.getValue();
+            String civilStatus = comboBoxCivilStatus.getValue();
+            String religion = textFieldReligion.getText().trim();
+            String citizenship = textFieldCitizenShip.getText().trim();
+            String phone = textFieldContactNumber.getText().trim();
+            String homeAddress = textFieldHomeAddress.getText().trim();
+            String provincialAddress = textFieldProvincialAddress.getText().trim();
+            String firstChoice = comboBoxFirstChoice.getValue();
+            String secondChoice = comboBoxSecondChoice.getValue();
+            String elemSchool = textFieldElemSchool.getText().trim();
+            String elemSchoolAddress = textFieldElemSchoolAddress.getText().trim();
+            String elemSchoolSY = textFieldElemSchoolSY.getText().trim();
+            String juniorHS = textFieldJuniorHS.getText().trim();
+            String juniorHSAddress = textFieldJuniorHSAddress.getText().trim();
+            String juniorHSSY = textFieldJuniorHSSY.getText().trim();
+            boolean form137 = checkBoxForm137.isSelected();
+            boolean form138 = checkBoxForm138.isSelected();
+            boolean goodMoral = checkBoxGoodMoral.isSelected();
+            String documentStatus = (form137 && form138 && goodMoral) ? "Complete" : "Incomplete";
+
+            if (LRN.matches("\\d*")) {
+                if (LRN.isEmpty() || lastName.isEmpty() || firstName.isEmpty() || middleName.isEmpty() ||
+                        String.valueOf(birthdate).isEmpty() || textFieldAge.getText().trim().isEmpty() || sex.equals("SELECT SEX") ||
+                        civilStatus.equals("SELECT CIVIL STATUS") || religion.isEmpty() || citizenship.isEmpty() || phone.isEmpty() ||
+                        homeAddress.isEmpty() || provincialAddress.isEmpty() || firstChoice.equals("SELECT FIRST CHOICE") || secondChoice.equals("SELECT SECOND CHOICE") ||
+                        elemSchool.isEmpty() || elemSchoolAddress.isEmpty() || elemSchoolSY.isEmpty() || juniorHS.isEmpty() ||
+                        juniorHSAddress.isEmpty() || juniorHSSY.isEmpty()) {
+                    alertSomeFieldsAreBlank();
+                } else {
+                    if (alertSubmitApplication()) {
+                        String[] data = {LRN, lastName, firstName, middleName, String.valueOf(birthdate), String.valueOf(age),
+                                sex, civilStatus, religion, citizenship, phone,
+                                homeAddress, provincialAddress,
+                                firstChoice, secondChoice,
+                                elemSchool, elemSchoolAddress, elemSchoolSY,
+                                juniorHS, juniorHSAddress, juniorHSSY,
+                                documentStatus, String.valueOf(form137), String.valueOf(form138), String.valueOf(goodMoral)};
+                        if (SQLSubmitApplication(emailUsing, data)) {
+                            alertApplicationSubmitted();
+                            setSubmitted();
+                        } else {
+                            alertUnexpectedError();
+                        }
+                    }
+                }
+            } else {
+                alertInvalidLRN();
+            }
+        } catch (Exception e) {
+            alertInvalidAge();
+        }
+    }
+
+    private void setSubmitted() {
+        disableFields();
+        disableCheckBoxes();
+        flowPane.getChildren().remove(anchorPaneSubmit);
+        labelStatus.setText("SUBMITTED");
+        labelStatus.setStyle("-fx-text-fill: black;");
     }
 
     @FXML
@@ -123,6 +202,7 @@ public class studentInfoController implements Initializable {
             comboBoxCivilStatus.setValue("SELECT CIVIL STATUS");
             textFieldReligion.setText("");
             textFieldCitizenShip.setText("");
+            textFieldLRN.setText("");
             textFieldContactNumber.setText("");
             textFieldEmailAddress.setText(emailUsing);
             textFieldHomeAddress.setText("");
@@ -141,6 +221,144 @@ public class studentInfoController implements Initializable {
         }
     }
 
+    private void setComboBoxesValue() {
+        comboBoxesClickable = true;
+
+        ObservableList<String> observableListSex = FXCollections.observableArrayList(
+                "SELECT SEX", "MALE", "FEMALE"
+        );
+        ObservableList<String> observableListCivilStatus = FXCollections.observableArrayList(
+                "SELECT CIVIL STATUS", "MARRIED", "WIDOWED", "SEPARATED", "DIVORCED", "SINGLE"
+        );
+        ObservableList<String> observableListFirstChoice = FXCollections.observableArrayList("SELECT FIRST CHOICE");
+        observableListFirstChoice.addAll(Objects.requireNonNull(SQLGetStrands()));
+        ObservableList<String> observableListSecondChoice = FXCollections.observableArrayList("SELECT SECOND CHOICE");
+        observableListSecondChoice.addAll(Objects.requireNonNull(SQLGetStrands()));
+
+        comboBoxSex.setItems(observableListSex);
+        comboBoxCivilStatus.setItems(observableListCivilStatus);
+        comboBoxFirstChoice.setItems(observableListFirstChoice);
+        comboBoxSecondChoice.setItems(observableListSecondChoice);
+
+        comboBoxSex.setValue("SELECT SEX");
+        comboBoxCivilStatus.setValue("SELECT CIVIL STATUS");
+        comboBoxFirstChoice.setValue("SELECT FIRST CHOICE");
+        comboBoxSecondChoice.setValue("SELECT SECOND CHOICE");
+    }
+
+    private void disableFields() {
+        comboBoxCivilStatus.setDisable(true);
+        comboBoxFirstChoice.setDisable(true);
+        comboBoxSecondChoice.setDisable(true);
+        comboBoxSex.setDisable(true);
+        datePickerDateOfBirth.setDisable(true);
+        textFieldAge.setDisable(true);
+        textFieldCitizenShip.setDisable(true);
+        textFieldLRN.setDisable(true);
+        textFieldContactNumber.setDisable(true);
+        textFieldEmailAddress.setDisable(true);
+        textFieldFirstName.setDisable(true);
+        textFieldHomeAddress.setDisable(true);
+        textFieldLastName.setDisable(true);
+        textFieldMiddleName.setDisable(true);
+        textFieldReligion.setDisable(true);
+        textFieldProvincialAddress.setDisable(true);
+        textFieldElemSchool.setDisable(true);
+        textFieldElemSchoolAddress.setDisable(true);
+        textFieldElemSchoolSY.setDisable(true);
+        textFieldJuniorHS.setDisable(true);
+        textFieldJuniorHSAddress.setDisable(true);
+        textFieldJuniorHSSY.setDisable(true);
+        comboBoxCivilStatus.setDisable(true);
+        comboBoxSex.setDisable(true);
+        comboBoxFirstChoice.setDisable(true);
+        comboBoxSecondChoice.setDisable(true);
+    }
+
+    private void setSubmittedValues() {
+        Student student = SQLGetStudentData(emailUsing);
+
+        if (student != null) {
+            textFieldLRN.setText(student.getLRN());
+            textFieldLastName.setText(student.getLastName());
+            textFieldFirstName.setText(student.getFirstName());
+            textFieldMiddleName.setText(student.getMiddleName());
+            datePickerDateOfBirth.setValue(student.getBirthdate());
+            textFieldAge.setText(String.valueOf(student.getAge()));
+            comboBoxSex.setValue(student.getSex());
+            comboBoxCivilStatus.setValue(student.getCivilStatus());
+            textFieldReligion.setText(student.getReligion());
+            textFieldCitizenShip.setText(student.getCitizenship());
+            textFieldContactNumber.setText(student.getPhone());
+            textFieldHomeAddress.setText(student.getHomeAddress());
+            textFieldProvincialAddress.setText(student.getProvincialAddress());
+            comboBoxFirstChoice.setValue(student.getFirstChoice());
+            comboBoxSecondChoice.setValue(student.getSecondChoice());
+            textFieldElemSchool.setText(student.getElemSchool());
+            textFieldElemSchoolAddress.setText(student.getElemSchoolAddress());
+            textFieldElemSchoolSY.setText(student.getElemSchoolSY());
+            textFieldJuniorHS.setText(student.getJuniorHS());
+            textFieldJuniorHSAddress.setText(student.getJuniorHSAddress());
+            textFieldJuniorHSSY.setText(student.getJuniorHSSY());
+
+            // Set checkbox values
+            checkBoxForm137.setSelected(student.isForm137());
+            checkBoxForm138.setSelected(student.isForm138());
+            checkBoxGoodMoral.setSelected(student.isGoodMoral());
+        }
+    }
+
+
+    private void disableCheckBoxes() {
+        checkBoxForm137.setDisable(true);
+        checkBoxForm138.setDisable(true);
+        checkBoxGoodMoral.setDisable(true);
+    }
+
+
+
+    private void hideRegisterDoneElements() {
+        anchorPaneEnrollDeclineButtons.setVisible(false);
+        anchorPaneSubmit.setVisible(true);
+    }
+
+    @FXML
+    void hBoxMainRequestFocus() {
+        hBoxMain.requestFocus();
+    }
+
+    @FXML
+    void sexClicked() {
+        if (comboBoxesClickable)
+            comboBoxSex.show();
+        else
+            comboBoxSex.hide();
+    }
+
+    @FXML
+    void civilStatusClicked() {
+        if (comboBoxesClickable)
+            comboBoxCivilStatus.show();
+        else
+            comboBoxCivilStatus.hide();
+    }
+
+    @FXML
+    void firstChoiceClicked() {
+        if (comboBoxesClickable)
+            comboBoxFirstChoice.show();
+        else
+            comboBoxFirstChoice.hide();
+    }
+
+    @FXML
+    void secondChoiceClicked() {
+        if (comboBoxesClickable)
+            comboBoxSecondChoice.show();
+        else
+            comboBoxSecondChoice.hide();
+    }
+
     @FXML
     void btnDeclineOnAction() {
 
@@ -149,11 +367,6 @@ public class studentInfoController implements Initializable {
     @FXML
     void btnEnrollOnAction() {
 
-    }
-
-    @FXML
-    void btnSubmitApplicationOnAction() {
-        
     }
 
     public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {
@@ -165,36 +378,27 @@ public class studentInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             if (isRegistration) {
-                hBoxMainRequestFocus();
-                hideRegisterDoneElements();
-                setComboBoxesValue();
-                setListenerForRegistration();
+                anchorPaneEnrollDeclineButtons.setVisible(false);
+                if (!SQLIsApplied(emailUsing)) {
+                    hBoxMainRequestFocus();
+                    hideRegisterDoneElements();
+                    setComboBoxesValue();
+                    textFieldEmailAddress.setDisable(true);
+                } else {
+                    setSubmittedValues();
+                    setSubmitted();
+                }
             } else {
                 // registered na
             }
 
-            textFieldEmailAddress.setEditable(false);
+            setEmailField();
         });
     }
 
-    private void setComboBoxesValue() {
-
+    private void setEmailField() {
+        textFieldEmailAddress.setText(emailUsing);
+        textFieldEmailAddress.setEditable(false);
     }
 
-
-    private void setListenerForRegistration() {
-
-    }
-
-    private void hideRegisterDoneElements() {
-        anchorPaneEnrollDeclineButtons.setVisible(false);
-        labelStatus.setVisible(false);
-        anchorPaneSubmit.setVisible(true);
-    }
-
-    private void showRegisterDoneElements() {
-        anchorPaneEnrollDeclineButtons.setVisible(true);
-        labelStatus.setVisible(true);
-        anchorPaneSubmit.setVisible(false);
-    }
 }

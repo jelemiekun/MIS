@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Student {
     private final String LRN;
-    private final String email;
+    //private final String email;
     private String strand;
     private String section;
     private String teachers;
@@ -28,7 +28,7 @@ public class Student {
     private final String juniorHS;
     private final String juniorHSAddress;
     private final String juniorHSSY;
-    private final String documentStatus;
+    //private final String documentStatus;
     private boolean form137;
     private boolean form138;
     private boolean goodMoral;
@@ -36,12 +36,8 @@ public class Student {
     private boolean isAdmissionProcessed;
     private boolean isEnrolled;
 
-    public Student(String LRN, String email, String strand, String section, String teachers, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, String documentStatus, boolean form137, boolean form138, boolean goodMoral, boolean isApplied, boolean isAdmissionProcessed, boolean isEnrolled) {
+    public Student(String LRN, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, boolean form137, boolean form138, boolean goodMoral) {
         this.LRN = LRN;
-        this.email = email;
-        this.strand = strand;
-        this.section = section;
-        this.teachers = teachers;
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -62,22 +58,18 @@ public class Student {
         this.juniorHS = juniorHS;
         this.juniorHSAddress = juniorHSAddress;
         this.juniorHSSY = juniorHSSY;
-        this.documentStatus = documentStatus;
         this.form137 = form137;
         this.form138 = form138;
         this.goodMoral = goodMoral;
-        this.isApplied = isApplied;
-        this.isAdmissionProcessed = isAdmissionProcessed;
-        this.isEnrolled = isEnrolled;
     }
 
     public String getLRN() {
         return LRN;
     }
 
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
-    }
+    }*/
 
     public String getStrand() {
         return strand;
@@ -171,9 +163,9 @@ public class Student {
         return juniorHSSY;
     }
 
-    public String getDocumentStatus() {
+    /*public String getDocumentStatus() {
         return documentStatus;
-    }
+    }*/
 
     public boolean isForm137() {
         return form137;

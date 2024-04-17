@@ -24,7 +24,7 @@
          <children>
             <MFXScrollPane prefWidth="1094.0">
                <content>
-                  <FlowPane prefWidth="1080.0">
+                  <FlowPane fx:id="flowPane" prefWidth="1080.0">
                      <children>
                         <AnchorPane prefHeight="205.0" prefWidth="1080.0">
                            <children>
@@ -48,7 +48,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="labelStatus" alignment="CENTER_RIGHT" layoutX="821.0" layoutY="50.0" prefHeight="17.0" prefWidth="228.0" text="STATUS" textAlignment="RIGHT">
+                              <Label fx:id="labelStatus" alignment="CENTER_RIGHT" layoutX="821.0" layoutY="50.0" prefHeight="17.0" prefWidth="228.0" textAlignment="RIGHT">
                                  <font>
                                     <Font name="System Bold" size="28.0" />
                                  </font>
@@ -87,14 +87,15 @@
                                     <MFXTextField fx:id="textFieldLastName" floatingText="LAST NAME*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <MFXTextField fx:id="textFieldFirstName" floatingText="FIRST NAME*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <MFXTextField fx:id="textFieldMiddleName" floatingText="MIDDLE NAME" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <MFXDatePicker fx:id="datePickerDateOfBirth" floatMode="INLINE" floatingText="DATE OF BIRTH*" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXDatePicker fx:id="datePickerDateOfBirth" allowEdit="false" floatMode="INLINE" floatingText="DATE OF BIRTH*" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                     <MFXTextField fx:id="textFieldAge" floatingText="AGE*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <MFXComboBox fx:id="comboBoxSex" floatingText="SEX*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <MFXComboBox fx:id="comboBoxCivilStatus" floatingText="CIVIL STATUS*" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <MFXComboBox fx:id="comboBoxSex" floatingText="SEX*" onMouseClicked="#sexClicked" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXComboBox fx:id="comboBoxCivilStatus" floatingText="CIVIL STATUS*" onMouseClicked="#civilStatusClicked" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                     <MFXTextField fx:id="textFieldReligion" floatingText="RELIGION*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                     <MFXTextField fx:id="textFieldCitizenShip" floatingText="CITIZENSHIP*" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <MFXTextField fx:id="textFieldContactNumber" floatingText="CONTACT NUMBER*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <MFXTextField fx:id="textFieldEmailAddress" floatingText="EMAIL ADDRESS*" floatingTextGap="0.0" graphicTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <MFXTextField fx:id="textFieldLRN" floatingText="LRN*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <MFXTextField fx:id="textFieldContactNumber" floatingText="CONTACT NUMBER*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <MFXTextField fx:id="textFieldEmailAddress" editable="false" floatingText="EMAIL ADDRESS*" floatingTextGap="0.0" graphicTextGap="0.0" prefHeight="50.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" top="10.0" />
@@ -154,8 +155,8 @@
                                     <Insets bottom="10.0" top="10.0" />
                                  </padding>
                                  <children>
-                                    <MFXComboBox fx:id="comboBoxFirstChoice" floatingText="1ST CHOICE*" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <MFXComboBox fx:id="comboBoxSecondChoice" floatingText="2ND CHOICE*" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXComboBox fx:id="comboBoxFirstChoice" floatingText="1ST CHOICE*" onMouseClicked="#firstChoiceClicked" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <MFXComboBox fx:id="comboBoxSecondChoice" floatingText="2ND CHOICE*" onMouseClicked="#secondChoiceClicked" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a53b0" height="53.0" layoutX="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10px; -fx-arc-width: 10px;" width="1020.0" />
