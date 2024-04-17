@@ -103,6 +103,14 @@ public class mainModel {
         mainController1.tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("strand"));
         mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("section"));
+
+        mainController1.tableViewEnrolledStudentTopNavAnchorPaneEnrolled.setSelectionModel(null);
+    }
+
+    private void setStudentTeacherObservableLists() {
+        mainController1.observableListTableViewEnrolledStudentTopNavAnchorPaneEnrolled.clear();
+        mainController1.observableListTableViewEnrolledStudentTopNavAnchorPaneEnrolled = SQLPopulateTopNavEnrolledStudentObservableList();
+        mainController1.tableViewEnrolledStudentTopNavAnchorPaneEnrolled.setItems(mainController1.observableListTableViewEnrolledStudentTopNavAnchorPaneEnrolled);
     }
 
     public void switchTabForMIS(int number) {
@@ -333,6 +341,8 @@ public class mainModel {
                 mainController1.btnTopNavSchedule.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnTopNavEnrolled.setStyle(mainController1.styleTabSelected);
                 mainController1.btnTopNavContactUs.setStyle(mainController1.styleTabNotSelected);
+
+                setStudentTeacherObservableLists();
                 break;
             case 6: // contact us
                 mainController1.anchorPaneTopNavDashboard.setVisible(false);

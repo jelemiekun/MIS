@@ -77,6 +77,15 @@ public class Student {
         this.isEnrolled = isEnrolled;
     }
 
+    public Student(String lastName, String firstName, String middleName, String strand, String section) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.fullName = lastName + ", " + firstName + " " + middleName;
+        this.strand = strand;
+        this.section = section;
+    }
+
     public String getLRN() {
         return LRN;
     }

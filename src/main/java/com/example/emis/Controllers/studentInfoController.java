@@ -444,11 +444,7 @@ public class studentInfoController implements Initializable {
             if (!processed) {
                 anchorPaneEnrollDeclineButtons.setVisible(true);
             } else {
-                if (enrolled) {
-                    labelSetApplicationProcessed(true);
-                } else {
-                    labelSetApplicationProcessed(false);
-                }
+                labelSetApplicationProcessed(enrolled);
             }
         } else {
             alertUnexpectedError();

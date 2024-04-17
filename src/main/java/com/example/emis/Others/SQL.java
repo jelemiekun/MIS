@@ -375,6 +375,37 @@ public class SQL {
         }
     }
 
+    public static ObservableList<Student> SQLPopulateTopNavEnrolledStudentObservableList() {
+        String query = "SELECT last_name, first_name, middle_name, strand, section FROM student WHERE is_applied = 1 AND is_admission_processed = 1 AND is_enrolled = 1;";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ObservableList<Student> allStudent = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                String lastName = resultSet.getString("last_name");
+                String firstName = resultSet.getString("first_name");
+                String middleName = resultSet.getString("middle_name");
+                String strand = resultSet.getString("strand");
+                String section = resultSet.getString("section");
+
+                if (strand == null)
+                    strand = "TBA";
+
+                if (section == null)
+                    section = "TBA";
+
+                allStudent.add(new Student(lastName, firstName, middleName, strand, section));
+            }
+            return allStudent;
+        } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static boolean SQLAcceptStudentApplication(String email) {
         String query = "UPDATE student SET is_admission_processed = 1, is_enrolled = 1 WHERE email = ?";
         try (Connection connection = dataSource.getConnection()) {
