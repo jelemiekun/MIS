@@ -231,9 +231,17 @@ public class studentInfoController implements Initializable {
                 "SELECT CIVIL STATUS", "MARRIED", "WIDOWED", "SEPARATED", "DIVORCED", "SINGLE"
         );
         ObservableList<String> observableListFirstChoice = FXCollections.observableArrayList("SELECT FIRST CHOICE");
-        observableListFirstChoice.addAll(Objects.requireNonNull(SQLGetStrands()));
         ObservableList<String> observableListSecondChoice = FXCollections.observableArrayList("SELECT SECOND CHOICE");
-        observableListSecondChoice.addAll(Objects.requireNonNull(SQLGetStrands()));
+
+        ObservableList<String> observableListStrandAvailable = FXCollections.observableArrayList();
+        if (SQLGetStrands() != null) {
+            observableListStrandAvailable.addAll(Objects.requireNonNull(SQLGetStrands()));
+        } else {
+            alertUnexpectedError();
+        }
+
+        observableListFirstChoice.addAll(observableListStrandAvailable);
+        observableListSecondChoice.addAll(observableListStrandAvailable);
 
         comboBoxSex.setItems(observableListSex);
         comboBoxCivilStatus.setItems(observableListCivilStatus);
@@ -305,6 +313,8 @@ public class studentInfoController implements Initializable {
             checkBoxForm137.setSelected(student.isForm137());
             checkBoxForm138.setSelected(student.isForm138());
             checkBoxGoodMoral.setSelected(student.isGoodMoral());
+        } else {
+            alertUnexpectedError();
         }
     }
 
@@ -369,31 +379,56 @@ public class studentInfoController implements Initializable {
 
     }
 
-    public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {
-        this.isRegistration = isRegistration;
-        this.emailUsing = emailUsing;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             if (isRegistration) {
-                anchorPaneEnrollDeclineButtons.setVisible(false);
-                if (!SQLIsApplied(emailUsing)) {
-                    hBoxMainRequestFocus();
-                    hideRegisterDoneElements();
-                    setComboBoxesValue();
-                    textFieldEmailAddress.setDisable(true);
-                } else {
-                    setSubmittedValues();
-                    setSubmitted();
-                }
+                setRegistration();
             } else {
-                // registered na
+                setNotRegistration();
             }
 
             setEmailField();
         });
+    }
+
+    private void setRegistration() {
+        anchorPaneEnrollDeclineButtons.setVisible(false);
+        if (!SQLIsApplied(emailUsing)) {
+            hBoxMainRequestFocus();
+            hideRegisterDoneElements();
+            setComboBoxesValue();
+            textFieldEmailAddress.setDisable(true);
+        } else {
+            setSubmittedValues();
+            setSubmitted();
+        }
+    }
+
+    private void setNotRegistration() {
+        boolean[] getProcessedAndEnrolledBoolean = SQLGetProcessedAndEnrolledBoolean(emailUsing);
+
+        if (getProcessedAndEnrolledBoolean != null) {
+            boolean processed = getProcessedAndEnrolledBoolean[0];
+            boolean enrolled = getProcessedAndEnrolledBoolean[1];
+
+            if (!processed) {
+                anchorPaneEnrollDeclineButtons.setVisible(true);
+            } else {
+                if (enrolled) {
+
+                } else {
+
+                }
+            }
+        } else {
+            alertUnexpectedError();
+        }
+    }
+
+    public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {
+        this.isRegistration = isRegistration;
+        this.emailUsing = emailUsing;
     }
 
     private void setEmailField() {

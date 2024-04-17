@@ -472,7 +472,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="anchorPaneTopNavEnrolled" onMouseClicked="#anchorPaneTopNavEnrolledRequestFocus" prefHeight="720.0" prefWidth="1280.0" visible="false">
                <children>
-                  <TableView fx:id="tableViewEnrolledStudentAnchorPaneEnrolled" layoutX="55.0" layoutY="95.0" prefHeight="593.0" prefWidth="1170.0">
+                  <TableView fx:id="tableViewEnrolledStudentTopNavAnchorPaneEnrolled" layoutX="55.0" layoutY="95.0" prefHeight="593.0" prefWidth="1170.0">
                     <columns>
                       <TableColumn fx:id="tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled" prefWidth="390.0" text="Full Name" />
                       <TableColumn fx:id="tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled" prefWidth="390.0" text="Strand" />
@@ -783,9 +783,9 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="tableViewEnrolledAnchorPaneEnroll" layoutX="15.0" layoutY="74.0" onMouseClicked="#tableViewEnrolledAnchorPaneEnrollDoubleClicked" prefHeight="582.0" prefWidth="270.0">
+                              <TableView fx:id="tableViewEnrolledLeftNavAnchorPaneEnroll" layoutX="15.0" layoutY="74.0" onMouseClicked="#tableViewEnrolledLeftNavAnchorPaneEnrollDoubleClicked" prefHeight="582.0" prefWidth="270.0">
                                  <columns>
-                                    <TableColumn fx:id="tableViewEnrolledColumnFullNameAnchorPaneEnroll" prefWidth="270.0" text="Full Name" />
+                                    <TableColumn fx:id="tableViewEnrolledLeftNavColumnFullNameAnchorPaneEnroll" prefWidth="270.0" text="Full Name" />
                                  </columns>
                               </TableView>
                            </children>

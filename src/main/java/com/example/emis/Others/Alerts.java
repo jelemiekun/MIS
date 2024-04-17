@@ -43,7 +43,7 @@ public class Alerts {
         alert.setTitle("Success");
         alert.setHeaderText("Application submitted!");
         alert.setContentText("Your application has been submitted. Please await further instructions regarding enrollment status.");
-        alert.showAndWait();
+        alert.show();
     }
 
     public static void alertRegisterNotSuccess() {

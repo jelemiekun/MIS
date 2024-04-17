@@ -3,32 +3,33 @@ package com.example.emis.Objects;
 import java.time.LocalDate;
 
 public class Student {
-    private final String LRN;
-    //private final String email;
+    private String LRN;
+    private String email;
     private String strand;
     private String section;
     private String teachers;
-    private final String lastName;
-    private final String firstName;
-    private final String middleName;
-    private final LocalDate birthdate;
-    private final int age;
-    private final String sex;
-    private final String civilStatus;
-    private final String religion;
-    private final String citizenship;
-    private final String phone;
-    private final String homeAddress;
-    private final String provincialAddress;
-    private final String firstChoice;
-    private final String secondChoice;
-    private final String elemSchool;
-    private final String elemSchoolAddress;
-    private final String elemSchoolSY;
-    private final String juniorHS;
-    private final String juniorHSAddress;
-    private final String juniorHSSY;
-    //private final String documentStatus;
+    private String lastName;
+    private String firstName;
+    private String middleName;
+    private String fullName;
+    private LocalDate birthdate;
+    private int age;
+    private String sex;
+    private String civilStatus;
+    private String religion;
+    private String citizenship;
+    private String phone;
+    private String homeAddress;
+    private String provincialAddress;
+    private String firstChoice;
+    private String secondChoice;
+    private String elemSchool;
+    private String elemSchoolAddress;
+    private String elemSchoolSY;
+    private String juniorHS;
+    private String juniorHSAddress;
+    private String juniorHSSY;
+    private String documentStatus;
     private boolean form137;
     private boolean form138;
     private boolean goodMoral;
@@ -36,11 +37,12 @@ public class Student {
     private boolean isAdmissionProcessed;
     private boolean isEnrolled;
 
-    public Student(String LRN, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, boolean form137, boolean form138, boolean goodMoral) {
+    public Student(String LRN, String email, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, boolean form137, boolean form138, boolean goodMoral) {
         this.LRN = LRN;
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;
+        this.fullName = lastName + ", " + firstName + " " + middleName;
         this.birthdate = birthdate;
         this.age = age;
         this.sex = sex;
@@ -63,13 +65,25 @@ public class Student {
         this.goodMoral = goodMoral;
     }
 
+    public Student(String email, String lastName, String firstName, String middleName, String documentStatus,boolean isApplied, boolean isAdmissionProcessed, boolean isEnrolled) {
+        this.email = email;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.fullName = lastName + ", " + firstName + " " + middleName;
+        this.documentStatus = documentStatus;
+        this.isApplied = isApplied;
+        this.isAdmissionProcessed = isAdmissionProcessed;
+        this.isEnrolled = isEnrolled;
+    }
+
     public String getLRN() {
         return LRN;
     }
 
-    /*public String getEmail() {
+    public String getEmail() {
         return email;
-    }*/
+    }
 
     public String getStrand() {
         return strand;
@@ -93,6 +107,10 @@ public class Student {
 
     public String getMiddleName() {
         return middleName;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public LocalDate getBirthdate() {
@@ -163,9 +181,9 @@ public class Student {
         return juniorHSSY;
     }
 
-    /*public String getDocumentStatus() {
+    public String getDocumentStatus() {
         return documentStatus;
-    }*/
+    }
 
     public boolean isForm137() {
         return form137;

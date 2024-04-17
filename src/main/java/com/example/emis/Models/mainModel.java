@@ -2,18 +2,19 @@ package com.example.emis.Models;
 
 import com.example.emis.Controllers.mainController;
 import com.example.emis.Controllers.studentInfoController;
+import com.example.emis.Objects.Student;
 import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -40,20 +41,27 @@ public class mainModel {
     public void whatRole() {
         String role = SQLWhatRole(mainController1.emailUsing);
 
-        if (role.equals(MIS_ROLE_ENUM.getRole())) {
-            loadForMIS();
-        } else if (role.equals(TEACHER_ROLE_ENUM.getRole())) {
-            loadForTeacher();
-        } else if (role.equals(STUDENT_ROLE_ENUM.getRole())) {
-            loadForStudent();
-        }
+        if (role != null) {
+            if (role.equals(MIS_ROLE_ENUM.getRole())) {
+                loadForMIS();
+            } else if (role.equals(TEACHER_ROLE_ENUM.getRole())) {
+                loadForTeacher();
+            } else if (role.equals(STUDENT_ROLE_ENUM.getRole())) {
+                loadForStudent();
+            }
 
-        if (!role.equals(MIS_ROLE_ENUM.getRole()))
-            setMapView();
+            if (!role.equals(MIS_ROLE_ENUM.getRole())) {
+                setEnrolledTables();
+                setMapView();
+            }
+        } else {
+            alertUnexpectedError();
+        }
     }
 
     private void loadForMIS() {
         setRemoveUnnecessaryButtonForMis();
+        setMISTables();
         mainController1.anchorPaneLeftNav.setVisible(true);
         switchTabForMIS(1);
     }
@@ -62,6 +70,39 @@ public class mainModel {
         ObservableList<JFXButton> topNavToRemove = FXCollections.observableArrayList(
                 mainController1.btnTopNavDashboard, mainController1.btnTopNavSections, mainController1.btnTopNavHome, mainController1.btnTopNavSchedule, mainController1.btnTopNavEnrolled, mainController1.btnTopNavContactUs);
         mainController1.flowPaneTopNav.getChildren().removeAll(topNavToRemove);
+    }
+
+    private void setMISTables() {
+        mainController1.tableViewApplicantsAnchorPaneEnroll.setItems(mainController1.observableListTableViewApplicantsAnchorPaneEnroll);
+        mainController1.tableViewApplicantsColumnFullNameAnchorPaneEnroll.setReorderable(false);
+        mainController1.tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll.setReorderable(false);
+        mainController1.tableViewApplicantsColumnFullNameAnchorPaneEnroll.setResizable(false);
+        mainController1.tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll.setResizable(false);
+        mainController1.tableViewApplicantsColumnFullNameAnchorPaneEnroll.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        mainController1.tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll.setCellValueFactory(new PropertyValueFactory<>("documentStatus"));
+
+        mainController1.tableViewEnrolledLeftNavAnchorPaneEnroll.setItems(mainController1.observableListTableViewEnrolledLeftNavAnchorPaneEnroll);
+        mainController1.tableViewEnrolledLeftNavColumnFullNameAnchorPaneEnroll.setReorderable(false);
+        mainController1.tableViewEnrolledLeftNavColumnFullNameAnchorPaneEnroll.setResizable(false);
+        mainController1.tableViewEnrolledLeftNavColumnFullNameAnchorPaneEnroll.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+
+        mainController1.tableViewDeclinedAnchorPaneEnroll.setItems(mainController1.observableListTableViewDeclinedAnchorPaneEnroll);
+        mainController1.tableViewDeclinedColumnFullNameAnchorPaneEnroll.setReorderable(false);
+        mainController1.tableViewDeclinedColumnFullNameAnchorPaneEnroll.setResizable(false);
+        mainController1.tableViewDeclinedColumnFullNameAnchorPaneEnroll.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+    }
+
+    private void setEnrolledTables() {
+        mainController1.tableViewEnrolledStudentTopNavAnchorPaneEnrolled.setItems(mainController1.observableListTableViewEnrolledStudentTopNavAnchorPaneEnrolled);
+        mainController1.tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled.setReorderable(false);
+        mainController1.tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled.setResizable(false);
+        mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setReorderable(false);
+        mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setResizable(false);
+        mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setReorderable(false);
+        mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setResizable(false);
+        mainController1.tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("strand"));
+        mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("section"));
     }
 
     public void switchTabForMIS(int number) {
@@ -80,6 +121,8 @@ public class mainModel {
                 mainController1.btnLeftNavStrand.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnLeftNavSection.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnLeftNavContactUs.setStyle(mainController1.styleTabNotSelected);
+
+                setMISObservableLists();
                 break;
             case 2: // applicants
                 mainController1.anchorPaneLeftNavDashboard.setVisible(false);
@@ -95,6 +138,8 @@ public class mainModel {
                 mainController1.btnLeftNavStrand.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnLeftNavSection.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnLeftNavContactUs.setStyle(mainController1.styleTabNotSelected);
+
+                setMISObservableLists();
                 break;
             case 3: // teacher
                 mainController1.anchorPaneLeftNavDashboard.setVisible(false);
@@ -156,6 +201,29 @@ public class mainModel {
                 mainController1.btnLeftNavSection.setStyle(mainController1.styleTabNotSelected);
                 mainController1.btnLeftNavContactUs.setStyle(mainController1.styleTabSelected);
                 break;
+        }
+    }
+
+    private void setMISObservableLists() {
+        mainController1.observableListAllApplicants.clear();
+        mainController1.observableListTableViewApplicantsAnchorPaneEnroll.clear();
+        mainController1.observableListTableViewEnrolledLeftNavAnchorPaneEnroll.clear();
+        mainController1.observableListTableViewDeclinedAnchorPaneEnroll.clear();
+
+        mainController1.observableListAllApplicants = SQLPopulateStudentObservableList();
+
+        for (Student student : mainController1.observableListAllApplicants) {
+            if (student.isApplied()) {
+                mainController1.observableListTableViewApplicantsAnchorPaneEnroll.add(student);
+
+                if (student.isAdmissionProcessed()) {
+                    if (student.isEnrolled()) {
+                        mainController1.observableListTableViewEnrolledLeftNavAnchorPaneEnroll.add(student);
+                    } else {
+                        mainController1.observableListTableViewDeclinedAnchorPaneEnroll.add(student);
+                    }
+                }
+            }
         }
     }
 
@@ -319,7 +387,7 @@ public class mainModel {
         }
     }
 
-    public void openEnrollNow(String email) {
+    public void openStudentInformation(String email, boolean isRegistration) {
         Thread threadEnrollment = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -336,7 +404,7 @@ public class mainModel {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     studentInfoController studentInfoController = loader.getController();
-                    studentInfoController.setRegistrationAndEmail(true, email);
+                    studentInfoController.setRegistrationAndEmail(isRegistration, email);
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(mainController1.anchorPaneCenter.getScene().getWindow());
                     stage.setTitle(TEACHER_CREDENTIALS_SCENE.getTitle());

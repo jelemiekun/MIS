@@ -233,8 +233,13 @@ public class SQL {
             preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+
+            if (resultSet.next())
+                return resultSet.getInt("is_applied") == 1;
+            else
+                return false;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             alertNoConnection();
             return false;
         }
@@ -270,18 +275,18 @@ public class SQL {
         }
     }
 
-    public static Student SQLGetStudentData(String email) {
-        String query = "SELECT LRN, last_name, first_name, middle_name, birthdate, age, sex, civil_status, religion, citizenship, phone, home_address, provincial_address, first_choice, second_choice, elem_school, elem_school_address, elem_SY, junior_hs, junior_hs_address, junior_hs_SY, form_137, form_138, good_moral FROM student WHERE email = ?";
+    public static Student SQLGetStudentData(String emailUsing) {
+        String query = "SELECT LRN, email, last_name, first_name, middle_name, birthdate, age, sex, civil_status, religion, citizenship, phone, home_address, provincial_address, first_choice, second_choice, elem_school, elem_school_address, elem_SY, junior_hs, junior_hs_address, junior_hs_SY, form_137, form_138, good_moral FROM student WHERE email = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, emailUsing);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                // Retrieve data from the result set
                 String LRN = resultSet.getString("LRN");
+                String email = resultSet.getString("email");
                 String lastName = resultSet.getString("last_name");
                 String firstName = resultSet.getString("first_name");
                 String middleName = resultSet.getString("middle_name");
@@ -302,16 +307,67 @@ public class SQL {
                 String juniorHS = resultSet.getString("junior_hs");
                 String juniorHSAddress = resultSet.getString("junior_hs_address");
                 String juniorHSSY = resultSet.getString("junior_hs_SY");
-                boolean form137 = resultSet.getBoolean("form_137");
-                boolean form138 = resultSet.getBoolean("form_138");
-                boolean goodMoral = resultSet.getBoolean("good_moral");
+                boolean form137 = resultSet.getInt("form_137") == 1;
+                boolean form138 = resultSet.getInt("form_138") == 1;
+                boolean goodMoral = resultSet.getInt("good_moral") == 1;
 
-                // Create and return a Student object with the retrieved data
-                return new Student(LRN, lastName, firstName, middleName, birthdate, age, sex, civilStatus, religion, citizenship, phone, homeAddress, provincialAddress, firstChoice, secondChoice, elemSchool, elemSchoolAddress, elemSchoolSY, juniorHS, juniorHSAddress, juniorHSSY, form137, form138, goodMoral);
+                return new Student(LRN, email, lastName, firstName, middleName, birthdate, age, sex, civilStatus, religion, citizenship, phone, homeAddress, provincialAddress, firstChoice, secondChoice, elemSchool, elemSchoolAddress, elemSchoolSY, juniorHS, juniorHSAddress, juniorHSSY, form137, form138, goodMoral);
             }
         } catch (SQLException e) {
             alertNoConnection();
         }
         return null;
+    }
+
+    public static boolean[] SQLGetProcessedAndEnrolledBoolean(String email) {
+        String query = "SELECT is_admission_processed, is_enrolled FROM student WHERE email = ?";
+        boolean[] result = new boolean[2];
+
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                result[0] = resultSet.getInt("is_admission_processed") == 1;
+                result[1] = resultSet.getInt("is_enrolled") == 1;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            alertNoConnection();
+            return null;
+        }
+        return result;
+    }
+
+    public static ObservableList<Student> SQLPopulateStudentObservableList() {
+        String query = "SELECT email, last_name, first_name, middle_name, document_status, is_applied, is_admission_processed, is_enrolled FROM student;";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ObservableList<Student> allStudent = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String lastName = resultSet.getString("last_name");
+                String firstName = resultSet.getString("first_name");
+                String middleName = resultSet.getString("middle_name");
+                String documentStatus = resultSet.getString("document_status");
+                boolean isApplied = resultSet.getInt("is_applied") == 1;
+                boolean isAdmissionProcessed = resultSet.getInt("is_admission_processed") == 1;
+                boolean isEnrolled = resultSet.getInt("is_enrolled") == 1;
+
+                allStudent.add(new Student(email, lastName, firstName, middleName, documentStatus, isApplied, isAdmissionProcessed, isEnrolled));
+            }
+            return allStudent;
+        } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
     }
 }

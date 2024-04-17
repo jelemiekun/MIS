@@ -1,11 +1,13 @@
 package com.example.emis.Controllers;
 
 import com.example.emis.Models.mainModel;
+import com.example.emis.Objects.Student;
 import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,10 +26,6 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static com.example.emis.Others.Alerts.*;
-import static com.example.emis.Others.Alerts.alertUnexpectedError;
-import static com.example.emis.Others.SQL.SQLDeleteAllStudent;
 
 public class mainController implements Initializable {
     public MapPoint mapPoint = new MapPoint(14.56830,121.07535);
@@ -131,11 +129,20 @@ public class mainController implements Initializable {
     // Row Constraints
     public RowConstraints rowLastSchedule;
 
+    // ObservableLists
+    public ObservableList<Student> observableListAllApplicants = FXCollections.observableArrayList();
+    public ObservableList<Student> observableListTableViewApplicantsAnchorPaneEnroll = FXCollections.observableArrayList();
+    public ObservableList<Student> observableListTableViewEnrolledLeftNavAnchorPaneEnroll = FXCollections.observableArrayList();
+    public ObservableList<Student> observableListTableViewDeclinedAnchorPaneEnroll = FXCollections.observableArrayList();
+    public ObservableList<Student> observableListTableViewEnrolledStudentTopNavAnchorPaneEnrolled = FXCollections.observableArrayList();
+
     // TableViews
-    public TableView<?> tableViewApplicantsAnchorPaneEnroll;
-    public TableView<?> tableViewDeclinedAnchorPaneEnroll;
-    public TableView<?> tableViewEnrolledAnchorPaneEnroll;
-    public TableView<?> tableViewEnrolledStudentAnchorPaneEnrolled;
+    public TableView<Student> tableViewApplicantsAnchorPaneEnroll;
+    public TableView<Student> tableViewEnrolledLeftNavAnchorPaneEnroll;
+    public TableView<Student> tableViewDeclinedAnchorPaneEnroll;
+    public TableView<Student> tableViewEnrolledStudentTopNavAnchorPaneEnrolled;
+
+
     public TableView<?> tableViewSectionAnchorPaneAdmin;
     public TableView<?> tableViewSectionHandlingAnchorPaneTopNavSections;
     public TableView<?> tableViewStrandAnchorPaneStrand;
@@ -143,13 +150,24 @@ public class mainController implements Initializable {
     public TableView<?> tableViewTeacherAnchorPaneTeachers;
 
     // TableColumns
-    public TableColumn<?, ?> tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll;
-    public TableColumn<?, ?> tableViewApplicantsColumnFullNameAnchorPaneEnroll;
-    public TableColumn<?, ?> tableViewDeclinedColumnFullNameAnchorPaneEnroll;
-    public TableColumn<?, ?> tableViewEnrolledColumnFullNameAnchorPaneEnroll;
-    public TableColumn<?, ?> tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled;
-    public TableColumn<?, ?> tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled;
-    public TableColumn<?, ?> tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled;
+    public TableColumn<Student, String> tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll;
+    public TableColumn<Student, String> tableViewApplicantsColumnFullNameAnchorPaneEnroll;
+
+
+
+    public TableColumn<Student, String> tableViewEnrolledLeftNavColumnFullNameAnchorPaneEnroll;
+
+    public TableColumn<Student, String> tableViewDeclinedColumnFullNameAnchorPaneEnroll;
+
+
+    public TableColumn<Student, String> tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled;
+    public TableColumn<Student, String> tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled;
+    public TableColumn<Student, String> tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled;
+
+
+
+
+
     public TableColumn<?, ?> tableViewSectionColumnDeleteAnchorPaneAdmin;
     public TableColumn<?, ?> tableViewSectionColumnScheduleAnchorPaneAdmin;
     public TableColumn<?, ?> tableViewSectionColumnSectionHandlingAnchorPaneTopNavSections;
@@ -312,7 +330,7 @@ public class mainController implements Initializable {
 
     @FXML
     void btnEnrollNowAnchorPaneTopNavDashboardOnAction() throws InterruptedException {
-        mainModel1.openEnrollNow(emailUsing);
+        mainModel1.openStudentInformation(emailUsing, true);
     }
 
     @FXML
@@ -332,17 +350,32 @@ public class mainController implements Initializable {
 
     @FXML
     void tableViewApplicantsAnchorPaneEnrollDoubleClicked(MouseEvent event) {
-
+        if (event.getClickCount() == 2) {
+            Student selectedStudent = tableViewApplicantsAnchorPaneEnroll.getSelectionModel().getSelectedItem();
+            if (selectedStudent != null) {
+                mainModel1.openStudentInformation(selectedStudent.getEmail(), false);
+            }
+        }
     }
 
     @FXML
     void tableViewDeclinedAnchorPaneEnrollDoubleClicked(MouseEvent event) {
-
+        if (event.getClickCount() == 2) {
+            Student selectedStudent = tableViewDeclinedAnchorPaneEnroll.getSelectionModel().getSelectedItem();
+            if (selectedStudent != null) {
+                mainModel1.openStudentInformation(selectedStudent.getEmail(), false);
+            }
+        }
     }
 
     @FXML
-    void tableViewEnrolledAnchorPaneEnrollDoubleClicked(MouseEvent event) {
-
+    void tableViewEnrolledLeftNavAnchorPaneEnrollDoubleClicked(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            Student selectedStudent = tableViewEnrolledLeftNavAnchorPaneEnroll.getSelectionModel().getSelectedItem();
+            if (selectedStudent != null) {
+                mainModel1.openStudentInformation(selectedStudent.getEmail(), false);
+            }
+        }
     }
 
     @FXML

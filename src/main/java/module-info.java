@@ -12,4 +12,5 @@ module com.example.emis {
     exports com.example.emis;
     exports com.example.emis.Controllers;
     opens com.example.emis.Controllers to javafx.fxml;
+    opens com.example.emis.Objects to javafx.base;
 }
