@@ -134,7 +134,8 @@ public class SQL {
             preparedStatement.setString( 2, encryptString(password));
             preparedStatement.setString(3, STUDENT_ROLE_ENUM.getRole());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
             return true;
         } catch (SQLException e) {
             alertNoConnection();
@@ -149,7 +150,8 @@ public class SQL {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
             return true;
         } catch (SQLException e) {
             alertNoConnection();
@@ -196,8 +198,8 @@ public class SQL {
             preparedStatement.setBoolean(25, Boolean.parseBoolean(data[24]));
             preparedStatement.setString(26, email);
 
-            preparedStatement.executeUpdate();
-
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
             return true;
         } catch (SQLException e) {
             alertNoConnection();
@@ -254,7 +256,8 @@ public class SQL {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
             return true;
         } catch (SQLException e) {
             alertNoConnection();
@@ -267,7 +270,8 @@ public class SQL {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
             return true;
         } catch (SQLException e) {
             alertNoConnection();
@@ -365,6 +369,36 @@ public class SQL {
                 allStudent.add(new Student(email, lastName, firstName, middleName, documentStatus, isApplied, isAdmissionProcessed, isEnrolled));
             }
             return allStudent;
+        } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean SQLAcceptStudentApplication(String email) {
+        String query = "UPDATE student SET is_admission_processed = 1, is_enrolled = 1 WHERE email = ?";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
+            return true;
+        } catch (SQLException e) {
+            alertNoConnection();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean SQLDeclineStudentApplication(String email) {
+        String query = "UPDATE student SET is_admission_processed = 1, is_enrolled = 0 WHERE email = ?";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
+            return true;
         } catch (SQLException e) {
             alertNoConnection();
             throw new RuntimeException(e);

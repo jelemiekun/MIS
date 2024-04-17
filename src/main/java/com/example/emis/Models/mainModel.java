@@ -123,6 +123,7 @@ public class mainModel {
                 mainController1.btnLeftNavContactUs.setStyle(mainController1.styleTabNotSelected);
 
                 setMISObservableLists();
+                setMISDashboardContent();
                 break;
             case 2: // applicants
                 mainController1.anchorPaneLeftNavDashboard.setVisible(false);
@@ -202,6 +203,12 @@ public class mainModel {
                 mainController1.btnLeftNavContactUs.setStyle(mainController1.styleTabSelected);
                 break;
         }
+    }
+
+    private void setMISDashboardContent() {
+        mainController1.labelAnchorPaneAdminDashboardApplicants.setText(String.valueOf(mainController1.observableListAllApplicants.size()));
+        mainController1.labelAnchorPaneAdminDashboardEnrolled.setText(String.valueOf(mainController1.observableListTableViewEnrolledLeftNavAnchorPaneEnroll.size()));
+        mainController1.labelAnchorPaneAdminDashboardDeclined.setText(String.valueOf(mainController1.observableListTableViewDeclinedAnchorPaneEnroll.size()));
     }
 
     private void setMISObservableLists() {
@@ -413,6 +420,13 @@ public class mainModel {
                     stage.setScene(scene);
                     stage.showAndWait();
                     System.out.println("Thread " + Thread.currentThread().getName() + " done.");
+
+                    if (!isRegistration) {
+                        setMISObservableLists();
+                        mainController1.tableViewApplicantsAnchorPaneEnroll.refresh();
+                        mainController1.tableViewEnrolledLeftNavAnchorPaneEnroll.refresh();
+                        mainController1.tableViewDeclinedAnchorPaneEnroll.refresh();
+                    }
                 });
             }
         });

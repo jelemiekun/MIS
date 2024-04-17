@@ -43,7 +43,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="597.0" layoutY="179.0" text="*Type the complete information based on your PSA Birth Certificate" textAlignment="RIGHT">
+                              <Label fx:id="labelGuide" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="597.0" layoutY="179.0" text="*Type the complete information based on your PSA Birth Certificate" textAlignment="RIGHT">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

@@ -27,6 +27,7 @@ public class studentInfoController implements Initializable {
     private boolean isRegistration = false;
     private boolean isRegistered = false;
     private String emailUsing = "";
+    private String fullName = "";
     private boolean comboBoxesClickable = false;
 
     @FXML
@@ -43,6 +44,9 @@ public class studentInfoController implements Initializable {
 
     @FXML
     private Label labelStatus;
+
+    @FXML
+    private Label labelGuide;
 
     @FXML
     private MFXCheckbox checkBoxForm137;
@@ -168,7 +172,7 @@ public class studentInfoController implements Initializable {
                                 documentStatus, String.valueOf(form137), String.valueOf(form138), String.valueOf(goodMoral)};
                         if (SQLSubmitApplication(emailUsing, data)) {
                             alertApplicationSubmitted();
-                            setSubmitted();
+                            setSubmitted(true);
                         } else {
                             alertUnexpectedError();
                         }
@@ -182,12 +186,14 @@ public class studentInfoController implements Initializable {
         }
     }
 
-    private void setSubmitted() {
+    private void setSubmitted(boolean disableCheckboxes) {
         disableFields();
-        disableCheckBoxes();
         flowPane.getChildren().remove(anchorPaneSubmit);
         labelStatus.setText("SUBMITTED");
         labelStatus.setStyle("-fx-text-fill: black;");
+
+        if (disableCheckboxes)
+            disableCheckBoxes();
     }
 
     @FXML
@@ -313,6 +319,8 @@ public class studentInfoController implements Initializable {
             checkBoxForm137.setSelected(student.isForm137());
             checkBoxForm138.setSelected(student.isForm138());
             checkBoxGoodMoral.setSelected(student.isGoodMoral());
+
+            fullName = student.getFullName();
         } else {
             alertUnexpectedError();
         }
@@ -330,6 +338,13 @@ public class studentInfoController implements Initializable {
     private void hideRegisterDoneElements() {
         anchorPaneEnrollDeclineButtons.setVisible(false);
         anchorPaneSubmit.setVisible(true);
+    }
+
+    private void labelSetApplicationProcessed(boolean isEnrolled) {
+        disableCheckBoxes();
+        anchorPaneEnrollDeclineButtons.setVisible(false);
+        labelStatus.setText(isEnrolled ? "ENROLLED" : "DECLINED");
+        labelStatus.setStyle(isEnrolled ? "-fx-text-fill: #00e813;" : "-fx-text-fill: #ff0000;" );
     }
 
     @FXML
@@ -370,13 +385,25 @@ public class studentInfoController implements Initializable {
     }
 
     @FXML
-    void btnDeclineOnAction() {
-
+    void btnEnrollOnAction() {
+        if (alertConfirmEnroll(fullName)) {
+            if (SQLAcceptStudentApplication(emailUsing)) {
+                labelSetApplicationProcessed(true);
+            } else {
+                alertUnexpectedError();
+            }
+        }
     }
 
     @FXML
-    void btnEnrollOnAction() {
-
+    void btnDeclineOnAction() {
+        if (alertConfirmDecline(fullName)) {
+            if (SQLDeclineStudentApplication(emailUsing)) {
+                labelSetApplicationProcessed(false);
+            } else {
+                alertUnexpectedError();
+            }
+        }
     }
 
     @Override
@@ -401,11 +428,13 @@ public class studentInfoController implements Initializable {
             textFieldEmailAddress.setDisable(true);
         } else {
             setSubmittedValues();
-            setSubmitted();
+            setSubmitted(true);
         }
     }
 
     private void setNotRegistration() {
+        updateGUISetNotRegistration();
+
         boolean[] getProcessedAndEnrolledBoolean = SQLGetProcessedAndEnrolledBoolean(emailUsing);
 
         if (getProcessedAndEnrolledBoolean != null) {
@@ -416,14 +445,21 @@ public class studentInfoController implements Initializable {
                 anchorPaneEnrollDeclineButtons.setVisible(true);
             } else {
                 if (enrolled) {
-
+                    labelSetApplicationProcessed(true);
                 } else {
-
+                    labelSetApplicationProcessed(false);
                 }
             }
         } else {
             alertUnexpectedError();
         }
+    }
+
+    private void updateGUISetNotRegistration() {
+        labelGuide.setVisible(false);
+        flowPane.getChildren().remove(anchorPaneSubmit);
+        setSubmittedValues();
+        setSubmitted(false);
     }
 
     public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {

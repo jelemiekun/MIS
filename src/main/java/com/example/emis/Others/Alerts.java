@@ -158,6 +158,34 @@ public class Alerts {
         return result.isPresent() && result.get() == buttonTypeYes;
     }
 
+    public static boolean alertConfirmEnroll(String fullName) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Enroll student?");
+        alert.setContentText("Enroll student " + fullName + "?\nSelect 'yes' to continue and 'no' to cancel.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonTypeYes;
+    }
+
+    public static boolean alertConfirmDecline(String fullName) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Decline student?");
+        alert.setContentText("Decline student " + fullName + "?\nSelect 'yes' to continue and 'no' to cancel.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonTypeYes;
+    }
+
     public static boolean alertConfirmLogout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Confirm");
