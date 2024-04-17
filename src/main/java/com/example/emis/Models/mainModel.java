@@ -1,8 +1,8 @@
 package com.example.emis.Models;
 
 import com.example.emis.Controllers.mainController;
+import com.example.emis.Controllers.studentInfoController;
 import com.gluonhq.maps.MapLayer;
-import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
@@ -18,6 +18,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -304,6 +305,26 @@ public class mainModel {
             marker.setTranslateX(point.getX());
             marker.setTranslateY(point.getY());
         }
+    }
+
+    public void openEnrollNow(String email) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(STUDENT_INFO_SCENE.getURL()));
+        Parent root = loader.load();
+
+        studentInfoController studentInfoController = loader.getController();
+        studentInfoController.setRegistrationAndEmail(true, email);
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(mainController1.anchorPaneCenter.getScene().getWindow());
+
+        stage.setTitle(TEACHER_CREDENTIALS_SCENE.getTitle());
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource(LOGO_IMAGE.getUrl()))));
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
 

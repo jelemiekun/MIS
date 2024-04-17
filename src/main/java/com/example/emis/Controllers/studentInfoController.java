@@ -4,18 +4,25 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class studentInfoController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class studentInfoController implements Initializable {
+    private boolean isRegistration = false;
+    private boolean isRegistered = false;
+    private String emailUsing = "";
 
     @FXML
     private AnchorPane anchorPaneEnrollDeclineButtons;
 
     @FXML
-    private AnchorPane anchorPaneSubmittion;
+    private AnchorPane anchorPaneSubmit;
 
     @FXML
     private MFXCheckbox checkBoxForm137;
@@ -72,26 +79,51 @@ public class studentInfoController {
     private MFXTextField textFieldReligion;
 
     @FXML
-    private MFXTextField textxFieldProvincialAddress;
+    private MFXTextField textFieldProvincialAddress;
 
     @FXML
-    void btnClearOnAction(ActionEvent event) {
+    void btnClearOnAction() {
 
     }
 
     @FXML
-    void btnDeclineOnAction(ActionEvent event) {
+    void btnDeclineOnAction() {
 
     }
 
     @FXML
-    void btnEnrollOnAction(ActionEvent event) {
+    void btnEnrollOnAction() {
 
     }
 
     @FXML
-    void btnSubmitApplicationOnAction(ActionEvent event) {
+    void btnSubmitApplicationOnAction() {
 
     }
 
+    public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {
+        this.isRegistration = isRegistration;
+        this.emailUsing = emailUsing;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> {
+            if (isRegistration) {
+                hideRegisterDoneElements();
+            }
+        });
+    }
+
+    private void hideRegisterDoneElements() {
+        anchorPaneEnrollDeclineButtons.setVisible(false);
+        labelStatus.setVisible(false);
+        anchorPaneSubmit.setVisible(true);
+    }
+
+    private void showRegisterDoneElements() {
+        anchorPaneEnrollDeclineButtons.setVisible(true);
+        labelStatus.setVisible(true);
+        anchorPaneSubmit.setVisible(false);
+    }
 }

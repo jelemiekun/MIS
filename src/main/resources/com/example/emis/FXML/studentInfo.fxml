@@ -123,7 +123,7 @@
                                  </rowConstraints>
                                  <children>
                                     <MFXTextField fx:id="textFieldHomeAddress" floatingText="HOME ADDRESS* (CURRENT ADDRESS)" floatingTextGap="0.0" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <MFXTextField fx:id="textxFieldProvincialAddress" floatingText="PROVINCIAL ADDRESS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <MFXTextField fx:id="textFieldProvincialAddress" floatingText="PROVINCIAL ADDRESS*" floatingTextGap="0.0" prefHeight="50.0" prefWidth="990.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" top="10.0" />
@@ -254,7 +254,7 @@
                               <Insets bottom="40.0" />
                            </padding>
                         </AnchorPane>
-                        <AnchorPane fx:id="anchorPaneSubmittion" prefWidth="1080.0">
+                        <AnchorPane fx:id="anchorPaneSubmit" prefWidth="1080.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8edfed90" height="200.0" layoutX="30.0" stroke="#74b8c3" strokeType="INSIDE" width="1020.0" />
                               <Label layoutX="51.0" layoutY="23.0" prefWidth="980.0" text="NOTE: Incorrect information will invalidate your admission . Be sure you have checked your complete name based on your Philippine Statistics Authority (PSA) copy of Birth Certificate." wrapText="true">
