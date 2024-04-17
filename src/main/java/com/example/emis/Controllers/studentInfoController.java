@@ -9,14 +9,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import static com.example.emis.Others.Alerts.*;
 
 public class studentInfoController implements Initializable {
     private boolean isRegistration = false;
     private boolean isRegistered = false;
     private String emailUsing = "";
+
+    @FXML
+    private HBox hBoxMain;
 
     @FXML
     private AnchorPane anchorPaneEnrollDeclineButtons;
@@ -34,16 +41,16 @@ public class studentInfoController implements Initializable {
     private MFXCheckbox checkBoxGoodMoral;
 
     @FXML
-    private MFXComboBox<?> comboBoxCivilStatus;
+    private MFXComboBox<String> comboBoxCivilStatus;
 
     @FXML
-    private MFXComboBox<?> comboBoxFirstChoice;
+    private MFXComboBox<String> comboBoxFirstChoice;
 
     @FXML
-    private MFXComboBox<?> comboBoxSecondChoice;
+    private MFXComboBox<String> comboBoxSecondChoice;
 
     @FXML
-    private MFXComboBox<?> comboBoxSex;
+    private MFXComboBox<String> comboBoxSex;
 
     @FXML
     private MFXDatePicker datePickerDateOfBirth;
@@ -82,8 +89,56 @@ public class studentInfoController implements Initializable {
     private MFXTextField textFieldProvincialAddress;
 
     @FXML
-    void btnClearOnAction() {
+    private MFXTextField textFieldElemSchool;
 
+    @FXML
+    private MFXTextField textFieldElemSchoolAddress;
+
+    @FXML
+    private MFXTextField textFieldElemSchoolSY;
+
+    @FXML
+    private MFXTextField textFieldJuniorHS;
+
+    @FXML
+    private MFXTextField textFieldJuniorHSAddress;
+
+    @FXML
+    private MFXTextField textFieldJuniorHSSY;
+
+    @FXML
+    void hBoxMainRequestFocus() {
+        hBoxMain.requestFocus();
+    }
+
+    @FXML
+    void btnClearOnAction() {
+        if (alertConfirmClearFieldsRegistration()) {
+            textFieldLastName.setText("");
+            textFieldFirstName.setText("");
+            textFieldMiddleName.setText("");
+            datePickerDateOfBirth.setValue(null);
+            textFieldAge.setText("");
+            comboBoxSex.setValue("SELECT SEX");
+            comboBoxCivilStatus.setValue("SELECT CIVIL STATUS");
+            textFieldReligion.setText("");
+            textFieldCitizenShip.setText("");
+            textFieldContactNumber.setText("");
+            textFieldEmailAddress.setText(emailUsing);
+            textFieldHomeAddress.setText("");
+            textFieldProvincialAddress.setText("");
+            comboBoxFirstChoice.setValue("SELECT FIRST CHOICE");
+            comboBoxSecondChoice.setValue("SELECT SECOND CHOICE");
+            textFieldElemSchool.setText("");
+            textFieldElemSchoolAddress.setText("");
+            textFieldElemSchoolSY.setText("");
+            textFieldJuniorHS.setText("");
+            textFieldJuniorHSAddress.setText("");
+            textFieldJuniorHSSY.setText("");
+            checkBoxForm137.setSelected(false);
+            checkBoxForm138.setSelected(false);
+            checkBoxGoodMoral.setSelected(false);
+        }
     }
 
     @FXML
@@ -98,7 +153,7 @@ public class studentInfoController implements Initializable {
 
     @FXML
     void btnSubmitApplicationOnAction() {
-
+        
     }
 
     public void setRegistrationAndEmail(boolean isRegistration, String emailUsing) {
@@ -110,9 +165,25 @@ public class studentInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
             if (isRegistration) {
+                hBoxMainRequestFocus();
                 hideRegisterDoneElements();
+                setComboBoxesValue();
+                setListenerForRegistration();
+            } else {
+                // registered na
             }
+
+            textFieldEmailAddress.setEditable(false);
         });
+    }
+
+    private void setComboBoxesValue() {
+
+    }
+
+
+    private void setListenerForRegistration() {
+
     }
 
     private void hideRegisterDoneElements() {

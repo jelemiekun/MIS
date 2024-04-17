@@ -70,6 +70,24 @@ public class Alerts {
         alert.show();
     }
 
+    public static boolean alertConfirmClearFieldsRegistration() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Clear all fields?");
+        alert.setContentText("Select 'yes' to clear all and 'cancel' to cancel.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            return true; // clicked 'yes'
+        } else {
+            return false; // clicked 'no'
+        }
+    }
+
     public static boolean alertConfirmLogout() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Confirm");
