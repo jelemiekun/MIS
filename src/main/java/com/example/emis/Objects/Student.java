@@ -37,8 +37,9 @@ public class Student {
     private boolean isAdmissionProcessed;
     private boolean isEnrolled;
 
-    public Student(String LRN, String email, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, boolean form137, boolean form138, boolean goodMoral) {
+    public Student(String LRN, String email, String lastName, String firstName, String middleName, LocalDate birthdate, int age, String sex, String civilStatus, String religion, String citizenship, String phone, String section, String homeAddress, String provincialAddress, String firstChoice, String secondChoice, String elemSchool, String elemSchoolAddress, String elemSchoolSY, String juniorHS, String juniorHSAddress, String juniorHSSY, boolean form137, boolean form138, boolean goodMoral) {
         this.LRN = LRN;
+        this.email = email;
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -50,6 +51,7 @@ public class Student {
         this.religion = religion;
         this.citizenship = citizenship;
         this.phone = phone;
+        this.section = section;
         this.homeAddress = homeAddress;
         this.provincialAddress = provincialAddress;
         this.firstChoice = firstChoice;

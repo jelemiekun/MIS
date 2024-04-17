@@ -280,7 +280,7 @@ public class SQL {
     }
 
     public static Student SQLGetStudentData(String emailUsing) {
-        String query = "SELECT LRN, email, last_name, first_name, middle_name, birthdate, age, sex, civil_status, religion, citizenship, phone, home_address, provincial_address, first_choice, second_choice, elem_school, elem_school_address, elem_SY, junior_hs, junior_hs_address, junior_hs_SY, form_137, form_138, good_moral FROM student WHERE email = ?";
+        String query = "SELECT LRN, email, last_name, first_name, middle_name, birthdate, age, sex, civil_status, religion, citizenship, phone, section, home_address, provincial_address, first_choice, second_choice, elem_school, elem_school_address, elem_SY, junior_hs, junior_hs_address, junior_hs_SY, form_137, form_138, good_moral FROM student WHERE email = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -301,6 +301,7 @@ public class SQL {
                 String religion = resultSet.getString("religion");
                 String citizenship = resultSet.getString("citizenship");
                 String phone = resultSet.getString("phone");
+                String section = resultSet.getString("section");
                 String homeAddress = resultSet.getString("home_address");
                 String provincialAddress = resultSet.getString("provincial_address");
                 String firstChoice = resultSet.getString("first_choice");
@@ -315,7 +316,7 @@ public class SQL {
                 boolean form138 = resultSet.getInt("form_138") == 1;
                 boolean goodMoral = resultSet.getInt("good_moral") == 1;
 
-                return new Student(LRN, email, lastName, firstName, middleName, birthdate, age, sex, civilStatus, religion, citizenship, phone, homeAddress, provincialAddress, firstChoice, secondChoice, elemSchool, elemSchoolAddress, elemSchoolSY, juniorHS, juniorHSAddress, juniorHSSY, form137, form138, goodMoral);
+                return new Student(LRN, email, lastName, firstName, middleName, birthdate, age, sex, civilStatus, religion, citizenship, phone, section, homeAddress, provincialAddress, firstChoice, secondChoice, elemSchool, elemSchoolAddress, elemSchoolSY, juniorHS, juniorHSAddress, juniorHSSY, form137, form138, goodMoral);
             }
         } catch (SQLException e) {
             alertNoConnection();
@@ -394,8 +395,29 @@ public class SQL {
                 if (strand == null)
                     strand = "TBA";
 
-                if (section == null)
-                    section = "TBA";
+                switch (section) {
+                    case "2":
+                        section = "DELPHI";
+                        break;
+                    case "3":
+                        section = "JAVASCRIPT";
+                        break;
+                    case "4":
+                        section = "KOTLIN";
+                        break;
+                    case "5":
+                        section = "AMETHYST";
+                        break;
+                    case "6":
+                        section = "BARITE";
+                        break;
+                    case "7":
+                        section = "CITRINE";
+                        break;
+                    default:
+                        section = "TBA";
+                        break;
+                }
 
                 allStudent.add(new Student(lastName, firstName, middleName, strand, section));
             }
@@ -433,6 +455,48 @@ public class SQL {
         } catch (SQLException e) {
             alertNoConnection();
             throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean SQLUpdateSelectedStudentSection(String email, String section) {
+        int sectionInInt;
+        switch (section) {
+            case "DELPHI":
+                sectionInInt = 2;
+                break;
+            case "JAVASCRIPT":
+                sectionInInt = 3;
+                break;
+            case "KOTLIN":
+                sectionInInt = 4;
+                break;
+            case "AMETHYST":
+                sectionInInt = 5;
+                break;
+            case "BARITE":
+                sectionInInt = 6;
+                break;
+            case "CITRINE":
+                sectionInInt = 7;
+                break;
+            default:
+                sectionInInt = 1;
+                break;
+        }
+
+        String query = "UPDATE student SET section = ? WHERE email = ?;";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, sectionInInt);
+            preparedStatement.setString(2, email);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Query OK, " + rowsAffected + " rows affected.");
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            alertNoConnection();
+            return false;
         }
     }
 }

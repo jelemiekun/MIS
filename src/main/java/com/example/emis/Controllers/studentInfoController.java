@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -28,6 +29,7 @@ public class studentInfoController implements Initializable {
     private boolean isRegistered = false;
     private String emailUsing = "";
     private String fullName = "";
+    private String sectionReference;
     private boolean comboBoxesClickable = false;
 
     @FXML
@@ -293,6 +295,8 @@ public class studentInfoController implements Initializable {
         Student student = SQLGetStudentData(emailUsing);
 
         if (student != null) {
+            sectionReference = student.getSection();
+
             textFieldLRN.setText(student.getLRN());
             textFieldLastName.setText(student.getLastName());
             textFieldFirstName.setText(student.getFirstName());
@@ -345,6 +349,52 @@ public class studentInfoController implements Initializable {
         anchorPaneEnrollDeclineButtons.setVisible(false);
         labelStatus.setText(isEnrolled ? "ENROLLED" : "DECLINED");
         labelStatus.setStyle(isEnrolled ? "-fx-text-fill: #00e813;" : "-fx-text-fill: #ff0000;" );
+
+        if (isEnrolled) {
+            ObservableList<String> availableSections = FXCollections.observableArrayList(
+                    "SELECT SECTION", "DELPHI", "JAVASCRIPT", "KOTLIN", "AMETHYST", "BARITE", "CITRINE"
+            );
+            comboBoxSelectSection.setItems(availableSections);
+            String section;
+
+            switch (sectionReference) {
+                case "2":
+                    section = "DELPHI";
+                    break;
+                case "3":
+                    section = "JAVASCRIPT";
+                    break;
+                case "4":
+                    section = "KOTLIN";
+                    break;
+                case "5":
+                    section = "AMETHYST";
+                    break;
+                case "6":
+                    section = "BARITE";
+                    break;
+                case "7":
+                    section = "CITRINE";
+                    break;
+                default:
+                    section = "SELECT SECTION";
+                    break;
+            }
+
+            comboBoxSelectSection.setValue(section);
+
+            comboBoxSelectSection.setOnAction(event -> {
+                String selectedSection = comboBoxSelectSection.getValue();
+
+                if (selectedSection.equals("SELECT SECTION"))
+                    selectedSection = "1";
+
+                if (!SQLUpdateSelectedStudentSection(emailUsing, selectedSection))
+                    alertUnexpectedError();
+            });
+
+            comboBoxSelectSection.setVisible(true);
+        }
     }
 
     @FXML
@@ -468,4 +518,6 @@ public class studentInfoController implements Initializable {
         textFieldEmailAddress.setEditable(false);
     }
 
+    @FXML
+    private MFXComboBox<String> comboBoxSelectSection;
 }
