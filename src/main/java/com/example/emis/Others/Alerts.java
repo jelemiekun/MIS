@@ -54,6 +54,14 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    public static void alertDeleteAllStudent() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Success");
+        alert.setHeaderText("Deleted");
+        alert.setContentText("All students deleted in the database!");
+        alert.showAndWait();
+    }
+
     public static void alertUnexpectedError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -105,11 +113,7 @@ public class Alerts {
 
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            return true; // clicked 'yes'
-        } else {
-            return false; // clicked 'no'
-        }
+        return result.isPresent() && result.get() == buttonTypeYes;
     }
 
     public static boolean alertSubmitApplication() {
@@ -123,11 +127,35 @@ public class Alerts {
 
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            return true; // clicked 'yes'
-        } else {
-            return false; // clicked 'no'
-        }
+        return result.isPresent() && result.get() == buttonTypeYes;
+    }
+
+    public static boolean alertConfirmDelete1() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Delete all students?");
+        alert.setContentText("Select 'yes' to delete all and 'cancel' to stay cancel.");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonTypeYes;
+    }
+
+    public static boolean alertConfirmDelete2() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm");
+        alert.setHeaderText("Delete all students?");
+        alert.setContentText("Are you sure?");
+
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonTypeYes;
     }
 
     public static boolean alertConfirmLogout() {
@@ -141,10 +169,6 @@ public class Alerts {
 
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            return true; // clicked 'yes'
-        } else {
-            return false; // clicked 'no'
-        }
+        return result.isPresent() && result.get() == buttonTypeYes;
     }
 }

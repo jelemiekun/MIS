@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -304,6 +305,17 @@ public class mainModel {
             Point2D point = getMapPoint(mainController1.mapPoint.getLatitude(), mainController1.mapPoint.getLongitude());
             marker.setTranslateX(point.getX());
             marker.setTranslateY(point.getY());
+        }
+    }
+
+    public void deleteAllStudent() {
+        if (alertConfirmDelete1()) {
+            if (alertConfirmDelete2()) {
+                if (SQLDeleteAllStudent())
+                    alertDeleteAllStudent();
+                else
+                    alertUnexpectedError();
+            }
         }
     }
 

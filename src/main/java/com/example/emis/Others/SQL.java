@@ -240,6 +240,36 @@ public class SQL {
         }
     }
 
+    public static boolean SQLDeleteAllStudent() {
+        return SQLDeleteAllStudentFromStudent() && SQLDeleteAllStudentFromLoginRegister();
+    }
+
+    private static boolean SQLDeleteAllStudentFromStudent() {
+        String query = "DELETE FROM student;";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            alertNoConnection();
+            return false;
+        }
+    }
+
+    private static boolean SQLDeleteAllStudentFromLoginRegister() {
+        String query = "DELETE FROM login_register WHERE role = 'student';";
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            alertNoConnection();
+            return false;
+        }
+    }
+
     public static Student SQLGetStudentData(String email) {
         String query = "SELECT LRN, last_name, first_name, middle_name, birthdate, age, sex, civil_status, religion, citizenship, phone, home_address, provincial_address, first_choice, second_choice, elem_school, elem_school_address, elem_SY, junior_hs, junior_hs_address, junior_hs_SY, form_137, form_138, good_moral FROM student WHERE email = ?";
         try (Connection connection = dataSource.getConnection()) {

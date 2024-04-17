@@ -25,6 +25,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.emis.Others.Alerts.*;
+import static com.example.emis.Others.Alerts.alertUnexpectedError;
+import static com.example.emis.Others.SQL.SQLDeleteAllStudent;
+
 public class mainController implements Initializable {
     public MapPoint mapPoint = new MapPoint(14.56830,121.07535);
 
@@ -364,6 +368,11 @@ public class mainController implements Initializable {
     @FXML
     void textFieldSearchStudentNameAnchorPaneEnrolledStudentPressedEnter(KeyEvent event) {
 
+    }
+
+    @FXML
+    void btnDeleteAllStudentOnAction() {
+        mainModel1.deleteAllStudent();
     }
 
     void setEmailUsing(String emailUsing) {

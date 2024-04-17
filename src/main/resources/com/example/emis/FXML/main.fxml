@@ -768,6 +768,11 @@
                                   <TableColumn fx:id="tableViewApplicantsColumnDocumentStatusAnchorPaneEnroll" prefWidth="108.0" text="Document Status" />
                                 </columns>
                               </TableView>
+                              <JFXButton layoutX="155.0" layoutY="610.0" onAction="#btnDeleteAllStudentOnAction" style="-fx-background-color: #ff0000;" text="DELETE ALL" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="670.0" prefWidth="200.0">
