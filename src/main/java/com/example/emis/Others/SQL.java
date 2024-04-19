@@ -11,9 +11,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 import static com.example.emis.Enums.SQLRolesEnum.*;
 import static com.example.emis.Others.Alerts.*;
@@ -22,9 +20,9 @@ public class SQL {
     private static final String key = "yrGrat07BQbk1OISHESH9mHjp8oCPmGx";
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource dataSource;
-    private static String url = "jdbc:mysql://localhost:3306/enrollment_system";
-    private static String user = "root";
-    private static String password = "admin";
+    private static final String url = "jdbc:mysql://localhost:3306/enrollment_system";
+    private static final String user = "root";
+    private static final String password = "admin";
 
     public static void SQLCreateConnection() {
         config.setJdbcUrl(url);

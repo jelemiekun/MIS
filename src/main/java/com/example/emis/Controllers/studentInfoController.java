@@ -154,7 +154,7 @@ public class studentInfoController implements Initializable {
             String documentStatus = (form137 && form138 && goodMoral) ? "Complete" : "Incomplete";
 
             if (LRN.matches("\\d*")) {
-                if (LRN.isEmpty() || lastName.isEmpty() || firstName.isEmpty() || middleName.isEmpty() ||
+                if (LRN.isEmpty() || lastName.isEmpty() || firstName.isEmpty() ||
                         String.valueOf(birthdate).isEmpty() || textFieldAge.getText().trim().isEmpty() || sex.equals("SELECT SEX") ||
                         civilStatus.equals("SELECT CIVIL STATUS") || religion.isEmpty() || citizenship.isEmpty() || phone.isEmpty() ||
                         homeAddress.isEmpty() || provincialAddress.isEmpty() || firstChoice.equals("SELECT FIRST CHOICE") || secondChoice.equals("SELECT SECOND CHOICE") ||
