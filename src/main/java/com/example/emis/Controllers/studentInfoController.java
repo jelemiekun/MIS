@@ -472,6 +472,7 @@ public class studentInfoController implements Initializable {
 
     private void setRegistration() {
         anchorPaneEnrollDeclineButtons.setVisible(false);
+        comboBoxSelectSection.setVisible(false);
         if (!SQLIsApplied(emailUsing)) {
             hBoxMainRequestFocus();
             hideRegisterDoneElements();
