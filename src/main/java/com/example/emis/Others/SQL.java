@@ -22,9 +22,9 @@ public class SQL {
     private static final String key = "yrGrat07BQbk1OISHESH9mHjp8oCPmGx";
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource dataSource;
-    private static String url = "jdbc:mysql://localhost:3306/enrollment_system";
-    private static String user = "root";
-    private static String password = "admin";
+    private static String url = "jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com/eMIS?verifyServerCertificate=false&useSSL=true&requireSSL=true&sslMode=VERIFY_CA&sslCert=src/main/resources/isrgrootx1.pem";
+    private static String user = "4Ds6aVc7kwsFBMd.root";
+    private static String password = "T8nEykz2G08IZLjh";
 
     public static void SQLCreateConnection() {
         config.setJdbcUrl(url);
