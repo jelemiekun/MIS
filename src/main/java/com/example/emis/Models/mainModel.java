@@ -101,8 +101,8 @@ public class mainModel {
         mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setReorderable(false);
         mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setResizable(false);
         mainController1.tableViewEnrolledStudentColumnFullNameAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("strand"));
-        mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("section"));
+        mainController1.tableViewEnrolledStudentColumnSectionAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("section"));
+        mainController1.tableViewEnrolledStudentColumnStrandAnchorPaneEnrolled.setCellValueFactory(new PropertyValueFactory<>("strand"));
 
         mainController1.tableViewEnrolledStudentTopNavAnchorPaneEnrolled.setSelectionModel(null);
     }

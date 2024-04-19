@@ -67,6 +67,7 @@
                                     </JFXButton>
                                  </children>
                               </AnchorPane>
+                              <MFXComboBox fx:id="comboBoxSelectSection" floatingText="SELECT SECTION" layoutX="35.0" layoutY="146.0" prefHeight="40.0" prefWidth="152.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="1080.0">
