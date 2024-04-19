@@ -439,6 +439,7 @@ public class studentInfoController implements Initializable {
     void btnEnrollOnAction() {
         if (alertConfirmEnroll(fullName)) {
             if (SQLAcceptStudentApplication(emailUsing)) {
+                comboBoxSelectSection.setVisible(true);
                 labelSetApplicationProcessed(true);
             } else {
                 alertUnexpectedError();
@@ -490,6 +491,7 @@ public class studentInfoController implements Initializable {
         boolean[] getProcessedAndEnrolledBoolean = SQLGetProcessedAndEnrolledBoolean(emailUsing);
 
         if (getProcessedAndEnrolledBoolean != null) {
+            comboBoxSelectSection.setVisible(false);
             boolean processed = getProcessedAndEnrolledBoolean[0];
             boolean enrolled = getProcessedAndEnrolledBoolean[1];
 
