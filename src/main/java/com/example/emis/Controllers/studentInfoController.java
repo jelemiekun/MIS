@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -26,7 +25,6 @@ import static com.example.emis.Others.SQL.*;
 
 public class studentInfoController implements Initializable {
     private boolean isRegistration = false;
-    private boolean isRegistered = false;
     private String emailUsing = "";
     private String fullName = "";
     private String sectionReference;
@@ -355,31 +353,15 @@ public class studentInfoController implements Initializable {
                     "SELECT SECTION", "DELPHI", "JAVASCRIPT", "KOTLIN", "AMETHYST", "BARITE", "CITRINE"
             );
             comboBoxSelectSection.setItems(availableSections);
-            String section;
-
-            switch (sectionReference) {
-                case "2":
-                    section = "DELPHI";
-                    break;
-                case "3":
-                    section = "JAVASCRIPT";
-                    break;
-                case "4":
-                    section = "KOTLIN";
-                    break;
-                case "5":
-                    section = "AMETHYST";
-                    break;
-                case "6":
-                    section = "BARITE";
-                    break;
-                case "7":
-                    section = "CITRINE";
-                    break;
-                default:
-                    section = "SELECT SECTION";
-                    break;
-            }
+            String section = switch (sectionReference) {
+                case "2" -> "DELPHI";
+                case "3" -> "JAVASCRIPT";
+                case "4" -> "KOTLIN";
+                case "5" -> "AMETHYST";
+                case "6" -> "BARITE";
+                case "7" -> "CITRINE";
+                default -> "SELECT SECTION";
+            };
 
             comboBoxSelectSection.setValue(section);
 
