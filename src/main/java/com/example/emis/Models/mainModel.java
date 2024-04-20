@@ -6,6 +6,9 @@ import com.example.emis.Objects.Student;
 import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapView;
 import com.jfoenix.controls.JFXButton;
+import io.github.palexdev.materialfx.theming.JavaFXThemes;
+import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
+import io.github.palexdev.materialfx.theming.UserAgentBuilder;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +39,16 @@ public class mainModel {
 
     public void setMainController1(mainController mainController1) {
         this.mainController1 = mainController1;
+    }
+
+    public static void setStyleSheets() {
+        UserAgentBuilder.builder()
+                .themes(JavaFXThemes.MODENA)
+                .themes(MaterialFXStylesheets.forAssemble(true))
+                .setDeploy(true)
+                .setResolveAssets(true)
+                .build()
+                .setGlobal();
     }
 
     public void whatRole() {
